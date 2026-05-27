@@ -426,8 +426,21 @@
     flex-shrink: 0;
 }
 
+.tc-mex-cta-hint {
+    font-family: var(--mex-font-mono);
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--mex-text-dim);
+    margin: 32px 0 14px;
+    padding: 10px 14px;
+    background: var(--mex-bg-2);
+    border-left: 2px solid var(--mex-text-mute);
+    border-radius: 0 var(--mex-radius) var(--mex-radius) 0;
+}
+.tc-mex-cta-hint strong { color: var(--mex-text); font-weight: 600; }
+
 .tc-mex-cta {
-    margin-top: 36px;
+    margin-top: 14px;
     display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
 }
 .tc-mex-btn {
@@ -754,6 +767,11 @@
                 '<h4 class="tc-mex-section-title">// Operations</h4>' + opsHtml +
                 toolsHtml +
 
+                '<p class="tc-mex-cta-hint">' +
+                    'If the file doesn\'t download on the first click, hard-refresh the page with ' +
+                    '<strong>Ctrl + Shift + R</strong> (Mac: <strong>Cmd + Shift + R</strong>) or open this ' +
+                    'page in a <strong>private / incognito window</strong>. Cached versions sometimes block the Drive link.' +
+                '</p>' +
                 '<div class="tc-mex-cta">' +
                     driveBtn +
                     '<button type="button" class="tc-mex-btn tc-mex-btn-secondary" data-close>Close</button>' +

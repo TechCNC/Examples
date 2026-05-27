@@ -698,7 +698,7 @@
 
         var driveUrl = ex.drive && ex.drive.url;
         var driveBtn = driveUrl
-            ? '<a class="tc-mex-btn tc-mex-btn-primary" href="' + escapeHtml(driveUrl) + '" download rel="noopener">↓ Download .f3d / .f3z</a>'
+            ? '<a class="tc-mex-btn tc-mex-btn-primary" href="' + escapeHtml(driveUrl) + '" target="_blank" rel="noopener">↓ Download .f3d / .f3z</a>'
             : '<span class="tc-mex-btn tc-mex-btn-primary" aria-disabled="true">↓ Download (not published yet)</span>';
 
         var diff = ex.difficulty || '';

@@ -1,5 +1,5 @@
 slug: modular-vise-step-1
-title: Modular Vise — Step 1
+title: Modular Vise
 source_document: "Machining modular vise-01 step-1"  # Fusion 360 doc.name; build_index.py joins with _extracted/<this>.cam.json
 
 material: 6061 aluminum

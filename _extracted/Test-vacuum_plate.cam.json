@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "documentName": "Test-vacuum_plate",
+  "extractedAt": "2026-05-26T18:00:00",
+  "setups": [
+    {
+      "setupName": "Setup1 — Vacuum fixture",
+      "operationType": 0,
+      "isSuppressed": false,
+      "stock": {"x_mm": 360, "y_mm": 360, "z_mm": 18},
+      "operations": [
+        {"name": "Face top",        "strategy": "face",        "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 1, "description": "FACE MILL Ø80 5FL",  "type": "face mill",     "diameter_mm": 80,"flutes": 5,"material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 3500, "feed_cutting_mm_min": 2800, "feed_plunge_mm_min": 700},
+         "geometry":     {"stepdown_mm": 0.4, "stepover_mm": 60, "stock_to_leave_mm": 0.0},
+         "cycle_time_min": 4.6},
+
+        {"name": "Pocket pattern — 36×",   "strategy": "pocket2d","isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 2, "description": "END MILL Ø12 3FL VHM","type": "flat end mill","diameter_mm": 12,"flutes": 3,"material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 11000, "feed_cutting_mm_min": 2400, "feed_plunge_mm_min": 600},
+         "geometry":     {"stepdown_mm": 3.0, "stepover_mm": 4.8, "stock_to_leave_mm": 0.0},
+         "cycle_time_min": 32.4},
+
+        {"name": "Bore vacuum ports","strategy": "drilling",   "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 3, "description": "DRILL Ø4 HSS",          "type": "drill",        "diameter_mm": 4, "flutes": 2,"material": "HSS"},
+         "feeds_speeds": {"spindle_rpm": 4000, "feed_cutting_mm_min": 300, "feed_plunge_mm_min": 300},
+         "geometry":     {"stepdown_mm": null, "stepover_mm": null, "stock_to_leave_mm": null},
+         "cycle_time_min": 5.8}
+      ],
+      "totalOperations": 3,
+      "totalCycleTimeMin": 42.8
+    }
+  ],
+  "uniqueTools": [
+    {"number": 1, "description": "FACE MILL Ø80 5FL",    "type": "face mill",     "diameter_mm": 80,"flutes": 5,"material": "carbide"},
+    {"number": 2, "description": "END MILL Ø12 3FL VHM", "type": "flat end mill", "diameter_mm": 12,"flutes": 3,"material": "carbide"},
+    {"number": 3, "description": "DRILL Ø4 HSS",         "type": "drill",         "diameter_mm": 4, "flutes": 2,"material": "HSS"}
+  ],
+  "stats": {"totalSetups": 1, "totalOperations": 3, "totalCycleTimeMin": 42.8, "uniqueToolCount": 3}
+}

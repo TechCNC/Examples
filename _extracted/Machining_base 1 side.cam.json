@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "documentName": "Machining_base 1 side",
+  "extractedAt": "2026-05-26T18:00:00",
+  "setups": [
+    {
+      "setupName": "Setup1 — Top side",
+      "operationType": 0,
+      "isSuppressed": false,
+      "stock": {"x_mm": 180, "y_mm": 75, "z_mm": 22},
+      "operations": [
+        {"name": "Face top",        "strategy": "face",        "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 1, "description": "FACE MILL Ø50 4FL", "type": "face mill",      "diameter_mm": 50,"flutes": 4,"material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 4500, "feed_cutting_mm_min": 2400, "feed_plunge_mm_min": 600},
+         "geometry":     {"stepdown_mm": 0.5, "stepover_mm": 35, "stock_to_leave_mm": 0.0},
+         "cycle_time_min": 1.8},
+
+        {"name": "Adaptive pocket Ø42","strategy": "adaptive2d","isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 2, "description": "END MILL Ø12 3FL VHM","type": "flat end mill","diameter_mm": 12,"flutes": 3,"material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 11000, "feed_cutting_mm_min": 2800, "feed_plunge_mm_min": 700},
+         "geometry":     {"stepdown_mm": 6.0, "stepover_mm": 4.8, "stock_to_leave_mm": 0.2},
+         "cycle_time_min": 12.5},
+
+        {"name": "Bore finish Ø42",  "strategy": "bore",       "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 3, "description": "END MILL Ø8 4FL",    "type": "flat end mill","diameter_mm": 8, "flutes": 4,"material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 14000, "feed_cutting_mm_min": 900, "feed_plunge_mm_min": 250},
+         "geometry":     {"stepdown_mm": 3.0, "stepover_mm": 0.15,"stock_to_leave_mm": 0.0},
+         "cycle_time_min": 4.7},
+
+        {"name": "Counterbore Ø10",  "strategy": "circular",   "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 3, "description": "END MILL Ø8 4FL",    "type": "flat end mill","diameter_mm": 8, "flutes": 4,"material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 14000, "feed_cutting_mm_min": 700, "feed_plunge_mm_min": 200},
+         "geometry":     {"stepdown_mm": 1.5, "stepover_mm": 0.2, "stock_to_leave_mm": 0.0},
+         "cycle_time_min": 2.3},
+
+        {"name": "Slot — side keys","strategy": "slot",        "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 3, "description": "END MILL Ø8 4FL",    "type": "flat end mill","diameter_mm": 8, "flutes": 4,"material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 14000, "feed_cutting_mm_min": 1400, "feed_plunge_mm_min": 350},
+         "geometry":     {"stepdown_mm": 4.0, "stepover_mm": 4.0, "stock_to_leave_mm": 0.0},
+         "cycle_time_min": 3.0},
+
+        {"name": "Drill Ø5 fixing", "strategy": "drilling",    "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 4, "description": "DRILL Ø5 HSS",       "type": "drill",        "diameter_mm": 5, "flutes": 2,"material": "HSS"},
+         "feeds_speeds": {"spindle_rpm": 3200, "feed_cutting_mm_min": 320, "feed_plunge_mm_min": 320},
+         "geometry":     {"stepdown_mm": null, "stepover_mm": null, "stock_to_leave_mm": null},
+         "cycle_time_min": 1.4}
+      ],
+      "totalOperations": 6,
+      "totalCycleTimeMin": 25.7
+    }
+  ],
+  "uniqueTools": [
+    {"number": 1, "description": "FACE MILL Ø50 4FL",   "type": "face mill",     "diameter_mm": 50,"flutes": 4,"material": "carbide"},
+    {"number": 2, "description": "END MILL Ø12 3FL VHM","type": "flat end mill", "diameter_mm": 12,"flutes": 3,"material": "carbide"},
+    {"number": 3, "description": "END MILL Ø8 4FL",     "type": "flat end mill", "diameter_mm": 8, "flutes": 4,"material": "carbide"},
+    {"number": 4, "description": "DRILL Ø5 HSS",        "type": "drill",         "diameter_mm": 5, "flutes": 2,"material": "HSS"}
+  ],
+  "stats": {"totalSetups": 1, "totalOperations": 6, "totalCycleTimeMin": 25.7, "uniqueToolCount": 4}
+}

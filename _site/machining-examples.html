@@ -1,0 +1,798 @@
+<!--
+  TechCNC — Machining Examples block.
+
+  Single self-contained HTML/CSS/JS unit. Paste the entire content of this
+  file into an Elementor "HTML" widget on the /machining-examples page.
+
+  Data source: https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples.json
+  jsDelivr caches with a 12-hour TTL by default; append ?v=YYYY-MM-DD to
+  the URL below or purge the cache after a content update.
+
+  Styles are scoped under ".tc-mex-*" to avoid colliding with the theme
+  or Elementor. JS uses no jQuery and exposes nothing on window.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   TechCNC Machining Examples — scoped block (.tc-mex-*)
+   ========================================================================== */
+.tc-mex-app {
+    --mex-bg:        #FFFFFF;
+    --mex-bg-2:      #F7F7F7;
+    --mex-surface:   #FFFFFF;
+    --mex-border:    #E5E5E5;
+    --mex-border-2:  #EFEFEF;
+    --mex-accent:    #FF6B00;
+    --mex-accent-dk: #C44E00;
+    --mex-accent-tint: #FFF4EC;
+    --mex-text:      #0F0F0F;
+    --mex-text-dim:  #5A5A5A;
+    --mex-text-mute: #9A9A9A;
+    --mex-radius:    4px;
+    --mex-shadow-sm: 0 1px 2px rgba(15,15,15,.04);
+    --mex-shadow-md: 0 6px 24px rgba(15,15,15,.08);
+
+    --mex-font-display: 'Anton', 'Impact', 'Arial Narrow Bold', sans-serif;
+    --mex-font-mono:    'JetBrains Mono', 'Consolas', monospace;
+    --mex-font-body:    'Inter', system-ui, -apple-system, sans-serif;
+
+    background: var(--mex-bg);
+    color: var(--mex-text);
+    font-family: var(--mex-font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    padding: 56px 24px 96px;
+    margin: 0 -20px;            /* break out of Elementor's column padding */
+    box-sizing: border-box;
+}
+.tc-mex-app *, .tc-mex-app *::before, .tc-mex-app *::after { box-sizing: border-box; }
+
+/* ---------- hero ---------------------------------------------------------- */
+.tc-mex-hero {
+    max-width: 1280px;
+    margin: 0 auto 56px;
+    border-left: 4px solid var(--mex-accent);
+    padding: 8px 0 8px 24px;
+}
+.tc-mex-eyebrow {
+    font-family: var(--mex-font-mono);
+    font-size: 13px;
+    letter-spacing: .18em;
+    color: var(--mex-accent);
+    text-transform: uppercase;
+    margin: 0 0 12px;
+}
+.tc-mex-title {
+    font-family: var(--mex-font-display);
+    font-weight: 400;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    margin: 0 0 16px;
+}
+.tc-mex-subtitle {
+    color: var(--mex-text-dim);
+    font-size: 17px;
+    max-width: 680px;
+    margin: 0;
+}
+
+/* ---------- filter chips -------------------------------------------------- */
+.tc-mex-filters {
+    max-width: 1280px;
+    margin: 0 auto 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+.tc-mex-filters-label {
+    font-family: var(--mex-font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--mex-text-mute);
+    letter-spacing: .12em;
+    margin-right: 4px;
+}
+.tc-mex-chip {
+    font-family: var(--mex-font-mono);
+    font-size: 12px;
+    letter-spacing: .04em;
+    padding: 7px 14px;
+    background: transparent;
+    color: var(--mex-text-dim);
+    border: 1px solid var(--mex-border);
+    border-radius: 99px;
+    cursor: pointer;
+    transition: all .15s ease;
+    text-transform: uppercase;
+}
+.tc-mex-chip:hover { border-color: var(--mex-accent); color: var(--mex-text); }
+.tc-mex-chip.is-active {
+    background: var(--mex-accent);
+    color: #000;
+    border-color: var(--mex-accent);
+    font-weight: 600;
+}
+
+/* ---------- grid ---------------------------------------------------------- */
+.tc-mex-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.tc-mex-card {
+    background: var(--mex-surface);
+    border: 1px solid var(--mex-border);
+    border-radius: var(--mex-radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+    box-shadow: var(--mex-shadow-sm);
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
+    padding: 0;
+}
+.tc-mex-card:hover {
+    border-color: var(--mex-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--mex-shadow-md);
+}
+.tc-mex-card:focus-visible {
+    outline: 2px solid var(--mex-accent);
+    outline-offset: 2px;
+}
+
+.tc-mex-card-media {
+    aspect-ratio: 4 / 3;
+    background: var(--mex-bg-2);
+    overflow: hidden;
+    position: relative;
+}
+.tc-mex-card-media img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .3s ease;
+}
+.tc-mex-card:hover .tc-mex-card-media img { transform: scale(1.04); }
+
+.tc-mex-card-diff {
+    position: absolute;
+    top: 10px; left: 10px;
+    font-family: var(--mex-font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    background: rgba(255,255,255,.94);
+    border: 1px solid var(--mex-border);
+    color: var(--mex-text);
+    border-radius: 2px;
+    backdrop-filter: blur(2px);
+}
+.tc-mex-card-diff.is-easy   { color: #15803D; border-color: #BBF7D0; background: #F0FDF4; }
+.tc-mex-card-diff.is-medium { color: #B45309; border-color: #FCD34D; background: #FEFCE8; }
+.tc-mex-card-diff.is-hard   { color: #B91C1C; border-color: #FECACA; background: #FEF2F2; }
+
+.tc-mex-card-body { padding: 18px 20px 22px; flex: 1; display: flex; flex-direction: column; }
+.tc-mex-card-title {
+    font-family: var(--mex-font-display);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.15;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    letter-spacing: .015em;
+}
+.tc-mex-card-strategies {
+    font-family: var(--mex-font-mono);
+    font-size: 11px;
+    line-height: 1.55;
+    color: var(--mex-text-dim);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin: 0 0 14px;
+}
+.tc-mex-card-strategies em { color: var(--mex-accent); font-style: normal; font-weight: 600; }
+.tc-mex-card-strategies-sep { color: var(--mex-text-mute); margin: 0 5px; }
+.tc-mex-card-stats {
+    display: flex;
+    gap: 18px;
+    margin: auto 0 0;
+    padding-top: 14px;
+    border-top: 1px dashed var(--mex-border);
+}
+.tc-mex-stat-block { display: flex; flex-direction: column; gap: 2px; }
+.tc-mex-stat-label {
+    font-family: var(--mex-font-mono);
+    font-size: 10px;
+    color: var(--mex-text-mute);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+.tc-mex-stat-value {
+    font-family: var(--mex-font-mono);
+    font-size: 15px;
+    color: var(--mex-text);
+    font-weight: 500;
+}
+
+/* ---------- skeleton ------------------------------------------------------ */
+@keyframes tc-mex-shine {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+.tc-mex-skel {
+    background: linear-gradient(90deg, #F2F2F2 25%, #E8E8E8 50%, #F2F2F2 75%);
+    background-size: 200% 100%;
+    animation: tc-mex-shine 1.4s linear infinite;
+    border-radius: var(--mex-radius);
+}
+.tc-mex-skel-card {
+    border: 1px solid var(--mex-border);
+    overflow: hidden;
+    height: 360px;
+}
+
+/* ---------- empty / error ------------------------------------------------- */
+.tc-mex-msg {
+    max-width: 720px;
+    margin: 48px auto;
+    padding: 32px;
+    border: 1px dashed var(--mex-border);
+    text-align: center;
+    color: var(--mex-text-dim);
+    font-family: var(--mex-font-mono);
+    font-size: 14px;
+    background: var(--mex-bg-2);
+    border-radius: var(--mex-radius);
+}
+.tc-mex-msg.is-error { border-color: #FECACA; color: #B91C1C; background: #FEF2F2; }
+
+/* ---------- modal --------------------------------------------------------- */
+.tc-mex-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,15,15,.55);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 48px 16px;
+    overflow-y: auto;
+}
+.tc-mex-modal.is-open { display: flex; }
+.tc-mex-modal-body {
+    background: var(--mex-bg);
+    border: 1px solid var(--mex-border);
+    border-radius: var(--mex-radius);
+    max-width: 1100px;
+    width: 100%;
+    color: var(--mex-text);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(15,15,15,.25);
+}
+.tc-mex-modal-close {
+    position: absolute;
+    top: 12px; right: 12px;
+    background: rgba(255,255,255,.92);
+    border: 1px solid var(--mex-border);
+    color: var(--mex-text);
+    font-size: 20px;
+    line-height: 1;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: border-color .15s, background .15s, color .15s;
+    backdrop-filter: blur(2px);
+}
+.tc-mex-modal-close:hover { border-color: var(--mex-accent); color: var(--mex-accent); background: var(--mex-accent-tint); }
+
+.tc-mex-modal-hero {
+    aspect-ratio: 3 / 2;
+    background: var(--mex-bg-2);
+    overflow: hidden;
+    border-bottom: 1px solid var(--mex-border);
+}
+.tc-mex-modal-hero img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+.tc-mex-modal-content { padding: 32px 36px 40px; }
+.tc-mex-modal-title {
+    font-family: var(--mex-font-display);
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin: 0 0 14px;
+}
+.tc-mex-modal-meta {
+    display: flex; flex-wrap: wrap; gap: 18px;
+    font-family: var(--mex-font-mono);
+    font-size: 12px;
+    color: var(--mex-text-dim);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--mex-border);
+}
+.tc-mex-modal-meta span strong { color: var(--mex-accent); font-weight: 500; }
+.tc-mex-modal-desc {
+    font-size: 15.5px;
+    color: var(--mex-text);
+    margin: 0 0 28px;
+    white-space: pre-wrap;
+}
+
+.tc-mex-section-title {
+    font-family: var(--mex-font-mono);
+    font-size: 12px;
+    letter-spacing: .18em;
+    color: var(--mex-accent);
+    text-transform: uppercase;
+    margin: 28px 0 14px;
+}
+
+.tc-mex-ops-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.tc-mex-ops-item {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    background: var(--mex-bg-2);
+    border: 1px solid var(--mex-border);
+    border-radius: var(--mex-radius);
+}
+.tc-mex-ops-num {
+    font-family: var(--mex-font-mono);
+    font-size: 12px;
+    color: var(--mex-accent);
+    font-weight: 600;
+    letter-spacing: .04em;
+}
+.tc-mex-ops-name {
+    font-family: var(--mex-font-body);
+    font-size: 15px;
+    color: var(--mex-text);
+    font-weight: 500;
+}
+.tc-mex-ops-strategy {
+    font-family: var(--mex-font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--mex-text-dim);
+    padding: 3px 9px;
+    background: var(--mex-bg);
+    border: 1px solid var(--mex-border);
+    border-radius: 99px;
+    white-space: nowrap;
+}
+
+.tc-mex-tools { display: flex; flex-direction: column; gap: 10px; }
+.tc-mex-tool-row {
+    display: flex; gap: 14px; align-items: baseline;
+    padding: 10px 14px;
+    background: var(--mex-bg-2);
+    border: 1px solid var(--mex-border);
+    border-radius: var(--mex-radius);
+    font-family: var(--mex-font-mono);
+    font-size: 13px;
+}
+.tc-mex-tool-num {
+    background: var(--mex-accent);
+    color: #000;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.tc-mex-cta {
+    margin-top: 36px;
+    display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+}
+.tc-mex-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 28px;
+    font-family: var(--mex-font-mono);
+    font-size: 13px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: var(--mex-radius);
+    transition: background .15s, color .15s, border-color .15s;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+.tc-mex-btn-primary {
+    background: var(--mex-accent);
+    color: #000;
+    font-weight: 600;
+}
+.tc-mex-btn-primary:hover { background: var(--mex-accent-dk); }
+.tc-mex-btn-primary[aria-disabled="true"] {
+    background: transparent;
+    color: var(--mex-text-mute);
+    border: 1px dashed var(--mex-border);
+    pointer-events: none;
+}
+.tc-mex-btn-secondary {
+    background: transparent;
+    color: var(--mex-text);
+    border-color: var(--mex-border);
+}
+.tc-mex-btn-secondary:hover { border-color: var(--mex-accent); color: var(--mex-accent); }
+
+@media (max-width: 720px) {
+    .tc-mex-modal-content { padding: 24px 20px 32px; }
+    .tc-mex-modal-meta { gap: 10px; }
+    .tc-mex-modal { padding: 16px 8px; }
+    .tc-mex-app { padding: 36px 16px 64px; margin: 0 -16px; }
+}
+</style>
+
+<div class="tc-mex-app" id="tcMexApp">
+
+    <header class="tc-mex-hero">
+        <p class="tc-mex-eyebrow">/ Machining examples</p>
+        <h1 class="tc-mex-title">Real Jobs.<br>Full CAM Data.</h1>
+        <p class="tc-mex-subtitle">
+            Open Fusion 360 projects from our shop — every operation, every tool, every feed and speed
+            documented. Download the source <code style="font-family:var(--mex-font-mono);color:var(--mex-accent)">.f3d</code>
+            files and inspect the toolpaths yourself.
+        </p>
+    </header>
+
+    <div class="tc-mex-filters" id="tcMexFilters" hidden>
+        <span class="tc-mex-filters-label">Filter:</span>
+        <!-- chips injected by JS -->
+    </div>
+
+    <div class="tc-mex-grid" id="tcMexGrid" aria-live="polite">
+        <!-- 6 skeletons while loading -->
+        <div class="tc-mex-skel tc-mex-skel-card"></div>
+        <div class="tc-mex-skel tc-mex-skel-card"></div>
+        <div class="tc-mex-skel tc-mex-skel-card"></div>
+        <div class="tc-mex-skel tc-mex-skel-card"></div>
+        <div class="tc-mex-skel tc-mex-skel-card"></div>
+        <div class="tc-mex-skel tc-mex-skel-card"></div>
+    </div>
+
+    <div class="tc-mex-modal" id="tcMexModal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="tc-mex-modal-body" id="tcMexModalBody"></div>
+    </div>
+
+</div>
+
+<script>
+(function () {
+    'use strict';
+
+    var CDN_BASE = 'https://cdn.jsdelivr.net/gh/TechCNC/Examples@main';
+    // Auto-detect local preview (Launch preview / `python -m http.server`) so
+    // we can iterate on design without pushing to GitHub. Production (techcnc.ca)
+    // unaffected — uses the jsDelivr CDN.
+    var IS_LOCAL = ['localhost', '127.0.0.1', ''].indexOf(location.hostname) !== -1;
+    var DATA_URL  = IS_LOCAL ? '../examples.json' : CDN_BASE + '/examples.json';
+    var LOCAL_ASSET_BASE = '../';                                 // assets resolve relative to _site/
+
+    var $grid    = document.getElementById('tcMexGrid');
+    var $filters = document.getElementById('tcMexFilters');
+    var $modal   = document.getElementById('tcMexModal');
+    var $modalBody = document.getElementById('tcMexModalBody');
+
+    var STATE = { all: [], filter: 'all' };
+
+    /* ---------- utilities ------------------------------------------------- */
+    function escapeHtml(s) {
+        if (s === null || s === undefined) return '';
+        return String(s).replace(/[&<>"']/g, function (c) {
+            return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+        });
+    }
+
+    function cycleTimeLabel(min) {
+        if (!min) return null;
+        if (min >= 60) return (min / 60).toFixed(1) + ' h';
+        return Math.round(min) + ' min';
+    }
+
+    // Friendly labels for Fusion 360 CAM strategy codes. Anything not listed
+    // falls back to a humanised version of the raw code (e.g. "adaptive3d" → "Adaptive 3d").
+    var STRATEGY_LABELS = {
+        face:           'Facing',
+        adaptive2d:     'Adaptive 2D',
+        adaptive3d:     'Adaptive 3D',
+        contour2d:      'Contour',
+        pocket2d:       'Pocket',
+        bore:           'Boring',
+        drilling:       'Drilling',
+        tapping:        'Tapping',
+        circular:       'Counterbore',
+        slot:           'Slot',
+        parallel:       'Parallel finish',
+        scallop:        'Scallop',
+        pencil:         'Pencil',
+        contour3d:      '3D Contour',
+        horizontal:     'Horizontal',
+        flow:           'Flow',
+        morphedSpiral:  'Morphed spiral',
+        ramp:           'Ramp',
+        radial:         'Radial',
+        spiral:         'Spiral'
+    };
+    function strategyLabel(s) {
+        if (!s) return '';
+        if (STRATEGY_LABELS[s]) return STRATEGY_LABELS[s];
+        var t = String(s).replace(/([a-z])([A-Z0-9])/g, '$1 $2');
+        return t.charAt(0).toUpperCase() + t.slice(1);
+    }
+
+    /* ---------- card render ----------------------------------------------- */
+    function renderCard(ex) {
+        var diff = (ex.difficulty || '').toLowerCase();
+        var diffCls = diff === 'easy' || diff === 'medium' || diff === 'hard'
+            ? ' is-' + diff : '';
+
+        var ops = ex.summary && ex.summary.totalOperations || 0;
+        var time = cycleTimeLabel(ex.summary && ex.summary.totalCycleTimeMin);
+        var material = ex.material || '—';
+
+        var stratList = (ex.summary && ex.summary.strategies) || [];
+        var shown = stratList.slice(0, 5).map(strategyLabel);
+        var more = stratList.length > 5 ? (stratList.length - 5) : 0;
+        var stratHtml = '';
+        if (shown.length) {
+            stratHtml = '<p class="tc-mex-card-strategies">' +
+                shown.map(function (s) { return '<em>' + escapeHtml(s) + '</em>'; })
+                     .join('<span class="tc-mex-card-strategies-sep">·</span>') +
+                (more ? ' <span class="tc-mex-card-strategies-sep">+' + more + ' more</span>' : '') +
+                '</p>';
+        }
+
+        return (
+            '<button type="button" class="tc-mex-card" data-slug="' + escapeHtml(ex.slug) + '">' +
+                '<div class="tc-mex-card-media">' +
+                    (diff ? '<span class="tc-mex-card-diff' + diffCls + '">' + escapeHtml(diff) + '</span>' : '') +
+                    '<img loading="lazy" src="' + escapeHtml(ex.preview) + '" alt="' + escapeHtml(ex.title) + '">' +
+                '</div>' +
+                '<div class="tc-mex-card-body">' +
+                    '<h3 class="tc-mex-card-title">' + escapeHtml(ex.title) + '</h3>' +
+                    stratHtml +
+                    '<div class="tc-mex-card-stats">' +
+                        '<div class="tc-mex-stat-block">' +
+                            '<span class="tc-mex-stat-label">Ops</span>' +
+                            '<span class="tc-mex-stat-value">' + (ops || '—') + '</span>' +
+                        '</div>' +
+                        '<div class="tc-mex-stat-block">' +
+                            '<span class="tc-mex-stat-label">Time</span>' +
+                            '<span class="tc-mex-stat-value">' + (time || '—') + '</span>' +
+                        '</div>' +
+                        '<div class="tc-mex-stat-block">' +
+                            '<span class="tc-mex-stat-label">Material</span>' +
+                            '<span class="tc-mex-stat-value" style="font-size:13px">' + escapeHtml(material) + '</span>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+            '</button>'
+        );
+    }
+
+    function renderGrid() {
+        var items = STATE.all;
+        if (STATE.filter !== 'all') {
+            items = items.filter(function (ex) {
+                return (ex.tags || []).indexOf(STATE.filter) !== -1
+                    || (ex.material || '').toLowerCase().indexOf(STATE.filter) !== -1
+                    || (ex.machine || '').toLowerCase() === STATE.filter;
+            });
+        }
+        if (!items.length) {
+            $grid.innerHTML = '<div class="tc-mex-msg">No examples match this filter.</div>';
+            return;
+        }
+        $grid.innerHTML = items.map(renderCard).join('');
+        $grid.querySelectorAll('.tc-mex-card').forEach(function (el) {
+            el.addEventListener('click', function () {
+                openModal(el.getAttribute('data-slug'));
+            });
+        });
+    }
+
+    /* ---------- filters --------------------------------------------------- */
+    // Logical chip order: axis → material → fixturing/holding → operation → shape.
+    // Unlisted tags fall to the end. Within a group, more-frequent tags win.
+    var TAG_PRIORITY = {
+        '3-axis': 10, '4-axis': 11, '5-axis': 12,
+        'aluminum': 20, 'plastic': 21, 'steel': 22, 'brass': 23,
+        'wood': 24, 'wax': 25, 'foam': 26,
+        'fixturing': 30, 'modular': 31, 'vise': 32, 'vacuum': 33, 'batch': 34,
+        'drilling': 40, 'pocketing': 41, 'tapping': 42, 'milling': 43,
+        'finishing': 50, 'roughing': 51, 'sculpt': 52, 'organic': 53
+    };
+
+    function buildFilters() {
+        var tagCounts = {};
+        STATE.all.forEach(function (ex) {
+            (ex.tags || []).forEach(function (t) { tagCounts[t] = (tagCounts[t] || 0) + 1; });
+        });
+        var tags = Object.keys(tagCounts).sort(function (a, b) {
+            var pa = TAG_PRIORITY[a] || 99;
+            var pb = TAG_PRIORITY[b] || 99;
+            if (pa !== pb) return pa - pb;
+            return tagCounts[b] - tagCounts[a];
+        }).slice(0, 8);  // top-8 tags
+
+        if (!tags.length) { $filters.hidden = true; return; }
+        $filters.hidden = false;
+
+        var html = '<span class="tc-mex-filters-label">Filter:</span>' +
+            '<button type="button" class="tc-mex-chip is-active" data-filter="all">All</button>';
+        tags.forEach(function (t) {
+            html += '<button type="button" class="tc-mex-chip" data-filter="' + escapeHtml(t) + '">' + escapeHtml(t) + '</button>';
+        });
+        $filters.innerHTML = html;
+
+        $filters.querySelectorAll('.tc-mex-chip').forEach(function (el) {
+            el.addEventListener('click', function () {
+                STATE.filter = el.getAttribute('data-filter');
+                $filters.querySelectorAll('.tc-mex-chip').forEach(function (c) { c.classList.remove('is-active'); });
+                el.classList.add('is-active');
+                renderGrid();
+            });
+        });
+    }
+
+    /* ---------- modal ----------------------------------------------------- */
+    function openModal(slug) {
+        var ex = STATE.all.find(function (e) { return e.slug === slug; });
+        if (!ex) return;
+
+        var ops = (ex.cam && ex.cam.setups) ? ex.cam.setups.reduce(function (acc, s) {
+            return acc.concat(s.operations || []);
+        }, []) : [];
+
+        var driveUrl = ex.drive && ex.drive.url;
+        var driveBtn = driveUrl
+            ? '<a class="tc-mex-btn tc-mex-btn-primary" href="' + escapeHtml(driveUrl) + '" target="_blank" rel="noopener">↓ Download .f3d / .f3z</a>'
+            : '<span class="tc-mex-btn tc-mex-btn-primary" aria-disabled="true">↓ Download (not published yet)</span>';
+
+        var diff = ex.difficulty || '';
+        var stats = ex.summary || {};
+        var time = cycleTimeLabel(stats.totalCycleTimeMin);
+
+        var opsHtml = ops.length ? (
+            '<ol class="tc-mex-ops-list">' +
+            ops.map(function (op, i) {
+                var num = String(i + 1).padStart(2, '0');
+                var label = strategyLabel(op.strategy);
+                return '<li class="tc-mex-ops-item">' +
+                    '<span class="tc-mex-ops-num">' + num + '</span>' +
+                    '<span class="tc-mex-ops-name">' + escapeHtml(op.name || '—') + '</span>' +
+                    (label ? '<span class="tc-mex-ops-strategy">' + escapeHtml(label) + '</span>' : '<span></span>') +
+                '</li>';
+            }).join('') +
+            '</ol>'
+        ) : '<div class="tc-mex-msg">CAM data not extracted yet.</div>';
+
+        var toolsHtml = '';
+        if (ex.cam && ex.cam.uniqueTools && ex.cam.uniqueTools.length) {
+            toolsHtml = '<h4 class="tc-mex-section-title">// Tool list</h4><div class="tc-mex-tools">' +
+                ex.cam.uniqueTools.map(function (t) {
+                    var parts = [];
+                    if (t.diameter_mm)    parts.push('Ø' + t.diameter_mm + ' mm');
+                    if (t.flutes)         parts.push(t.flutes + ' fl');
+                    if (t.type)           parts.push(t.type);
+                    if (t.material)       parts.push(t.material);
+                    return '<div class="tc-mex-tool-row">' +
+                        '<span class="tc-mex-tool-num">T' + (t.number || '?') + '</span>' +
+                        '<span>' + escapeHtml(t.description || '—') + '</span>' +
+                        '<span style="color:var(--mex-text-mute);margin-left:auto">' + escapeHtml(parts.join(' · ')) + '</span>' +
+                    '</div>';
+                }).join('') + '</div>';
+        }
+
+        $modalBody.innerHTML = (
+            '<button class="tc-mex-modal-close" aria-label="Close" type="button">&times;</button>' +
+            '<div class="tc-mex-modal-hero"><img src="' + escapeHtml(ex.preview) + '" alt=""></div>' +
+            '<div class="tc-mex-modal-content">' +
+                '<h2 class="tc-mex-modal-title">' + escapeHtml(ex.title) + '</h2>' +
+                '<div class="tc-mex-modal-meta">' +
+                    (ex.machine    ? '<span>Machine: <strong>' + escapeHtml(ex.machine) + '</strong></span>' : '') +
+                    (ex.material   ? '<span>Material: <strong>' + escapeHtml(ex.material) + '</strong></span>' : '') +
+                    (diff          ? '<span>Difficulty: <strong>' + escapeHtml(diff) + '</strong></span>' : '') +
+                    (stats.totalOperations ? '<span>Ops: <strong>' + stats.totalOperations + '</strong></span>' : '') +
+                    (time          ? '<span>Cycle: <strong>' + time + '</strong></span>' : '') +
+                    (stats.uniqueToolCount ? '<span>Tools: <strong>' + stats.uniqueToolCount + '</strong></span>' : '') +
+                '</div>' +
+                (ex.description ? '<div class="tc-mex-modal-desc">' + escapeHtml(ex.description) + '</div>' : '') +
+
+                '<h4 class="tc-mex-section-title">// Operations</h4>' + opsHtml +
+                toolsHtml +
+
+                '<div class="tc-mex-cta">' +
+                    driveBtn +
+                    '<button type="button" class="tc-mex-btn tc-mex-btn-secondary" data-close>Close</button>' +
+                '</div>' +
+            '</div>'
+        );
+
+        $modal.classList.add('is-open');
+        $modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        $modalBody.querySelector('.tc-mex-modal-close').addEventListener('click', closeModal);
+        $modalBody.querySelectorAll('[data-close]').forEach(function (b) { b.addEventListener('click', closeModal); });
+    }
+
+    function closeModal() {
+        $modal.classList.remove('is-open');
+        $modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        $modalBody.innerHTML = '';
+    }
+
+    $modal.addEventListener('click', function (e) { if (e.target === $modal) closeModal(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && $modal.classList.contains('is-open')) closeModal(); });
+
+    /* ---------- boot ------------------------------------------------------ */
+    // If a bundler injected `window.TC_MEX_DATA` (standalone preview file),
+    // use it directly — skip the network. Production loads from jsDelivr.
+    var dataPromise = window.TC_MEX_DATA
+        ? Promise.resolve(window.TC_MEX_DATA)
+        : fetch(DATA_URL, { cache: 'default' }).then(function (r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+        });
+
+    dataPromise
+        .then(function (data) {
+            STATE.all = (data && data.examples) || [];
+            if (IS_LOCAL) {
+                // jsDelivr URLs baked into examples.json don't resolve locally
+                // (repo isn't published yet) — rewrite to repo-relative paths.
+                STATE.all.forEach(function (ex) {
+                    if (ex.preview && ex.preview.indexOf(CDN_BASE) === 0) {
+                        ex.preview = LOCAL_ASSET_BASE + ex.preview.slice(CDN_BASE.length + 1);
+                    }
+                });
+            }
+            if (!STATE.all.length) {
+                $grid.innerHTML = '<div class="tc-mex-msg">No examples published yet — check back soon.</div>';
+                return;
+            }
+            buildFilters();
+            renderGrid();
+        })
+        .catch(function (err) {
+            console.error('[tc-mex] failed to load examples.json', err);
+            $grid.innerHTML = '<div class="tc-mex-msg is-error">' +
+                'Could not load examples (' + escapeHtml(err.message) + '). ' +
+                'If you just published a new example, jsDelivr may need a few minutes to refresh.' +
+                '</div>';
+        });
+})();
+</script>

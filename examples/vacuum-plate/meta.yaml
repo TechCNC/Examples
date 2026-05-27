@@ -1,0 +1,23 @@
+slug: vacuum-plate
+title: Vacuum Fixture Plate (Grid)
+source_document: "Test-vacuum_plate"
+
+material: aluminum
+machine: AP4060
+difficulty: easy
+tags: [aluminum, fixturing, 3-axis, vacuum]
+
+drive:
+  file_id: ""
+  url: "#preview"             # PLACEHOLDER
+
+preview: preview.jpg
+short_summary: ""
+
+description: |
+  Vacuum fixture base plate with a regular grid of square pockets. The
+  pocket pattern is generated as a single pattern operation — one of the
+  simplest yet most useful jobs for any router shop that holds plastic
+  or thin metal sheets with vacuum.
+
+  TODO: edit this description before publishing.

@@ -1,0 +1,23 @@
+slug: plastic-6-pcs
+title: Plastic Plates — 6 pcs
+source_document: "Machining_Plastic- 6 Pcs"
+
+material: HDPE / engineering plastic
+machine: AP4060
+difficulty: easy
+tags: [plastic, batch, 3-axis, fixturing]
+
+drive:
+  file_id: ""
+  url: "#preview"             # PLACEHOLDER
+
+preview: preview.jpg
+short_summary: ""
+
+description: |
+  Batch machining of 6 plastic plates in one setup. Demonstrates an
+  efficient fixturing layout where the parts share a single zero point
+  and toolpath dataset — every operation processes all 6 instances in
+  sequence.
+
+  TODO: edit this description before publishing.

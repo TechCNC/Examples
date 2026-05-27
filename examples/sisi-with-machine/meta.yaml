@@ -1,0 +1,23 @@
+slug: sisi-with-machine
+title: SISI — Organic Sculpt
+source_document: "SISI With Machine"
+
+material: machinable wax / foam
+machine: AP4060
+difficulty: hard
+tags: [3-axis, sculpt, organic, finishing]
+
+drive:
+  file_id: ""
+  url: "#preview"             # PLACEHOLDER
+
+preview: preview.jpg
+short_summary: ""
+
+description: |
+  3-axis machining of a freeform organic surface. Uses adaptive clearing
+  for stock removal and parallel / scallop finishing for the curved
+  surfaces. Shows how Fusion 360 handles dense mesh geometry directly
+  inside a CAM workflow.
+
+  TODO: edit this description before publishing.

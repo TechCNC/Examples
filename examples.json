@@ -1,0 +1,1489 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-27T01:21:57Z",
+  "source": "github.com/TechCNC/Examples",
+  "count": 6,
+  "examples": [
+    {
+      "slug": "base",
+      "title": "Aluminum Bases on Modular Fixture",
+      "material": "6061 aluminum",
+      "machine": "AP4060",
+      "difficulty": "medium",
+      "tags": [
+        "aluminum",
+        "fixturing",
+        "3-axis",
+        "modular"
+      ],
+      "description": "Machining two long aluminum bases simultaneously on a modular fixture\nplate. The red volumes in the preview are the raw stock removed by\nthe program — typical demonstration of a high-MRR roughing pass\nfollowed by finishing toolpaths.\n\nTODO: edit this description before publishing.",
+      "shortSummary": "7 ops, ~1.2 h, 6061 aluminum",
+      "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/base/preview.jpg",
+      "drive": {
+        "fileId": null,
+        "url": "#preview"
+      },
+      "summary": {
+        "totalSetups": 1,
+        "totalOperations": 7,
+        "totalCycleTimeMin": 73.7,
+        "uniqueToolCount": 5,
+        "strategies": [
+          "face",
+          "adaptive2d",
+          "contour2d",
+          "pocket2d",
+          "drilling"
+        ],
+        "toolTypes": [
+          "drill",
+          "face mill",
+          "flat end mill",
+          "spot drill"
+        ]
+      },
+      "cam": {
+        "schemaVersion": 1,
+        "documentName": "Machining_base",
+        "extractedAt": "2026-05-26T18:00:00",
+        "setups": [
+          {
+            "setupName": "Setup1 — 2× Bases on modular fixture",
+            "operationType": 0,
+            "isSuppressed": false,
+            "stock": {
+              "x_mm": 320,
+              "y_mm": 180,
+              "z_mm": 28
+            },
+            "operations": [
+              {
+                "name": "Face top",
+                "strategy": "face",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 1,
+                  "description": "FACE MILL Ø50 4FL",
+                  "type": "face mill",
+                  "diameter_mm": 50,
+                  "flutes": 4,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 4500,
+                  "feed_cutting_mm_min": 2400,
+                  "feed_plunge_mm_min": 600
+                },
+                "geometry": {
+                  "stepdown_mm": 0.5,
+                  "stepover_mm": 35,
+                  "stock_to_leave_mm": 0.0
+                },
+                "cycle_time_min": 5.4
+              },
+              {
+                "name": "Adaptive rough — 2× parts",
+                "strategy": "adaptive2d",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 2,
+                  "description": "END MILL Ø16 3FL VHM",
+                  "type": "flat end mill",
+                  "diameter_mm": 16,
+                  "flutes": 3,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 9500,
+                  "feed_cutting_mm_min": 3000,
+                  "feed_plunge_mm_min": 800
+                },
+                "geometry": {
+                  "stepdown_mm": 10.0,
+                  "stepover_mm": 6.4,
+                  "stock_to_leave_mm": 0.3
+                },
+                "cycle_time_min": 32.1
+              },
+              {
+                "name": "Rest rough Ø8",
+                "strategy": "adaptive2d",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 3,
+                  "description": "END MILL Ø8 4FL",
+                  "type": "flat end mill",
+                  "diameter_mm": 8,
+                  "flutes": 4,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 14000,
+                  "feed_cutting_mm_min": 2200,
+                  "feed_plunge_mm_min": 600
+                },
+                "geometry": {
+                  "stepdown_mm": 4.0,
+                  "stepover_mm": 3.2,
+                  "stock_to_leave_mm": 0.2
+                },
+                "cycle_time_min": 14.8
+              },
+              {
+                "name": "2D Contour finish",
+                "strategy": "contour2d",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 3,
+                  "description": "END MILL Ø8 4FL",
+                  "type": "flat end mill",
+                  "diameter_mm": 8,
+                  "flutes": 4,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 16000,
+                  "feed_cutting_mm_min": 1600,
+                  "feed_plunge_mm_min": 400
+                },
+                "geometry": {
+                  "stepdown_mm": 7.0,
+                  "stepover_mm": 0.2,
+                  "stock_to_leave_mm": 0.0
+                },
+                "cycle_time_min": 9.5
+              },
+              {
+                "name": "Pocket — keyways",
+                "strategy": "pocket2d",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 3,
+                  "description": "END MILL Ø8 4FL",
+                  "type": "flat end mill",
+                  "diameter_mm": 8,
+                  "flutes": 4,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 14000,
+                  "feed_cutting_mm_min": 1400,
+                  "feed_plunge_mm_min": 400
+                },
+                "geometry": {
+                  "stepdown_mm": 3.0,
+                  "stepover_mm": 3.2,
+                  "stock_to_leave_mm": 0.0
+                },
+                "cycle_time_min": 6.7
+              },
+              {
+                "name": "Spot drill",
+                "strategy": "drilling",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 4,
+                  "description": "SPOT DRILL Ø8 90°",
+                  "type": "spot drill",
+                  "diameter_mm": 8,
+                  "flutes": 2,
+                  "material": "HSS"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 3500,
+                  "feed_cutting_mm_min": 350,
+                  "feed_plunge_mm_min": 350
+                },
+                "geometry": {
+                  "stepdown_mm": null,
+                  "stepover_mm": null,
+                  "stock_to_leave_mm": null
+                },
+                "cycle_time_min": 2.0
+              },
+              {
+                "name": "Drill Ø5",
+                "strategy": "drilling",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 5,
+                  "description": "DRILL Ø5 HSS",
+                  "type": "drill",
+                  "diameter_mm": 5,
+                  "flutes": 2,
+                  "material": "HSS"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 3200,
+                  "feed_cutting_mm_min": 320,
+                  "feed_plunge_mm_min": 320
+                },
+                "geometry": {
+                  "stepdown_mm": null,
+                  "stepover_mm": null,
+                  "stock_to_leave_mm": null
+                },
+                "cycle_time_min": 3.2
+              }
+            ],
+            "totalOperations": 7,
+            "totalCycleTimeMin": 73.7
+          }
+        ],
+        "uniqueTools": [
+          {
+            "number": 1,
+            "description": "FACE MILL Ø50 4FL",
+            "type": "face mill",
+            "diameter_mm": 50,
+            "flutes": 4,
+            "material": "carbide"
+          },
+          {
+            "number": 2,
+            "description": "END MILL Ø16 3FL VHM",
+            "type": "flat end mill",
+            "diameter_mm": 16,
+            "flutes": 3,
+            "material": "carbide"
+          },
+          {
+            "number": 3,
+            "description": "END MILL Ø8 4FL",
+            "type": "flat end mill",
+            "diameter_mm": 8,
+            "flutes": 4,
+            "material": "carbide"
+          },
+          {
+            "number": 4,
+            "description": "SPOT DRILL Ø8 90°",
+            "type": "spot drill",
+            "diameter_mm": 8,
+            "flutes": 2,
+            "material": "HSS"
+          },
+          {
+            "number": 5,
+            "description": "DRILL Ø5 HSS",
+            "type": "drill",
+            "diameter_mm": 5,
+            "flutes": 2,
+            "material": "HSS"
+          }
+        ],
+        "stats": {
+          "totalSetups": 1,
+          "totalOperations": 7,
+          "totalCycleTimeMin": 73.7,
+          "uniqueToolCount": 5
+        }
+      }
+    },
+    {
+      "slug": "base-1-side",
+      "title": "Aluminum Base Plate — Single-Side Setup",
+      "material": "6061 aluminum",
+      "machine": "AP4060",
+      "difficulty": "easy",
+      "tags": [
+        "aluminum",
+        "3-axis",
+        "drilling",
+        "pocketing"
+      ],
+      "description": "Single-sided machining of an aluminum base plate with two large circular\npockets and counterbore features. Demonstrates a basic but complete CAM\nworkflow: face, contour, pocket, bore, drill — produced from one work\ncoordinate system without flipping the part.\n\nTODO: edit this description before publishing.",
+      "shortSummary": "6 ops, ~26 min, 6061 aluminum",
+      "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/base-1-side/preview.jpg",
+      "drive": {
+        "fileId": null,
+        "url": "#preview"
+      },
+      "summary": {
+        "totalSetups": 1,
+        "totalOperations": 6,
+        "totalCycleTimeMin": 25.7,
+        "uniqueToolCount": 4,
+        "strategies": [
+          "face",
+          "adaptive2d",
+          "bore",
+          "circular",
+          "slot",
+          "drilling"
+        ],
+        "toolTypes": [
+          "drill",
+          "face mill",
+          "flat end mill"
+        ]
+      },
+      "cam": {
+        "schemaVersion": 1,
+        "documentName": "Machining_base 1 side",
+        "extractedAt": "2026-05-26T18:00:00",
+        "setups": [
+          {
+            "setupName": "Setup1 — Top side",
+            "operationType": 0,
+            "isSuppressed": false,
+            "stock": {
+              "x_mm": 180,
+              "y_mm": 75,
+              "z_mm": 22
+            },
+            "operations": [
+              {
+                "name": "Face top",
+                "strategy": "face",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 1,
+                  "description": "FACE MILL Ø50 4FL",
+                  "type": "face mill",
+                  "diameter_mm": 50,
+                  "flutes": 4,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 4500,
+                  "feed_cutting_mm_min": 2400,
+                  "feed_plunge_mm_min": 600
+                },
+                "geometry": {
+                  "stepdown_mm": 0.5,
+                  "stepover_mm": 35,
+                  "stock_to_leave_mm": 0.0
+                },
+                "cycle_time_min": 1.8
+              },
+              {
+                "name": "Adaptive pocket Ø42",
+                "strategy": "adaptive2d",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 2,
+                  "description": "END MILL Ø12 3FL VHM",
+                  "type": "flat end mill",
+                  "diameter_mm": 12,
+                  "flutes": 3,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 11000,
+                  "feed_cutting_mm_min": 2800,
+                  "feed_plunge_mm_min": 700
+                },
+                "geometry": {
+                  "stepdown_mm": 6.0,
+                  "stepover_mm": 4.8,
+                  "stock_to_leave_mm": 0.2
+                },
+                "cycle_time_min": 12.5
+              },
+              {
+                "name": "Bore finish Ø42",
+                "strategy": "bore",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 3,
+                  "description": "END MILL Ø8 4FL",
+                  "type": "flat end mill",
+                  "diameter_mm": 8,
+                  "flutes": 4,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 14000,
+                  "feed_cutting_mm_min": 900,
+                  "feed_plunge_mm_min": 250
+                },
+                "geometry": {
+                  "stepdown_mm": 3.0,
+                  "stepover_mm": 0.15,
+                  "stock_to_leave_mm": 0.0
+                },
+                "cycle_time_min": 4.7
+              },
+              {
+                "name": "Counterbore Ø10",
+                "strategy": "circular",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 3,
+                  "description": "END MILL Ø8 4FL",
+                  "type": "flat end mill",
+                  "diameter_mm": 8,
+                  "flutes": 4,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 14000,
+                  "feed_cutting_mm_min": 700,
+                  "feed_plunge_mm_min": 200
+                },
+                "geometry": {
+                  "stepdown_mm": 1.5,
+                  "stepover_mm": 0.2,
+                  "stock_to_leave_mm": 0.0
+                },
+                "cycle_time_min": 2.3
+              },
+              {
+                "name": "Slot — side keys",
+                "strategy": "slot",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 3,
+                  "description": "END MILL Ø8 4FL",
+                  "type": "flat end mill",
+                  "diameter_mm": 8,
+                  "flutes": 4,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 14000,
+                  "feed_cutting_mm_min": 1400,
+                  "feed_plunge_mm_min": 350
+                },
+                "geometry": {
+                  "stepdown_mm": 4.0,
+                  "stepover_mm": 4.0,
+                  "stock_to_leave_mm": 0.0
+                },
+                "cycle_time_min": 3.0
+              },
+              {
+                "name": "Drill Ø5 fixing",
+                "strategy": "drilling",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 4,
+                  "description": "DRILL Ø5 HSS",
+                  "type": "drill",
+                  "diameter_mm": 5,
+                  "flutes": 2,
+                  "material": "HSS"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 3200,
+                  "feed_cutting_mm_min": 320,
+                  "feed_plunge_mm_min": 320
+                },
+                "geometry": {
+                  "stepdown_mm": null,
+                  "stepover_mm": null,
+                  "stock_to_leave_mm": null
+                },
+                "cycle_time_min": 1.4
+              }
+            ],
+            "totalOperations": 6,
+            "totalCycleTimeMin": 25.7
+          }
+        ],
+        "uniqueTools": [
+          {
+            "number": 1,
+            "description": "FACE MILL Ø50 4FL",
+            "type": "face mill",
+            "diameter_mm": 50,
+            "flutes": 4,
+            "material": "carbide"
+          },
+          {
+            "number": 2,
+            "description": "END MILL Ø12 3FL VHM",
+            "type": "flat end mill",
+            "diameter_mm": 12,
+            "flutes": 3,
+            "material": "carbide"
+          },
+          {
+            "number": 3,
+            "description": "END MILL Ø8 4FL",
+            "type": "flat end mill",
+            "diameter_mm": 8,
+            "flutes": 4,
+            "material": "carbide"
+          },
+          {
+            "number": 4,
+            "description": "DRILL Ø5 HSS",
+            "type": "drill",
+            "diameter_mm": 5,
+            "flutes": 2,
+            "material": "HSS"
+          }
+        ],
+        "stats": {
+          "totalSetups": 1,
+          "totalOperations": 6,
+          "totalCycleTimeMin": 25.7,
+          "uniqueToolCount": 4
+        }
+      }
+    },
+    {
+      "slug": "modular-vise-step-1",
+      "title": "Modular Vise — Step 1",
+      "material": "6061 aluminum",
+      "machine": "AP4060",
+      "difficulty": "medium",
+      "tags": [
+        "aluminum",
+        "fixturing",
+        "3-axis",
+        "vise",
+        "modular"
+      ],
+      "description": "Step 1 of machining a modular CNC vise body. Workpieces are clamped on a\ncustom fixture plate with a regular pattern of T-slots — multiple parts\nare roughed and finished in a single setup to minimize handling time.\n\nTODO: edit this description before publishing.",
+      "shortSummary": "8 ops, ~40 min, 6061 aluminum",
+      "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/modular-vise-step-1/preview.jpg",
+      "drive": {
+        "fileId": null,
+        "url": "#preview"
+      },
+      "summary": {
+        "totalSetups": 1,
+        "totalOperations": 8,
+        "totalCycleTimeMin": 40.4,
+        "uniqueToolCount": 7,
+        "strategies": [
+          "face",
+          "adaptive2d",
+          "contour2d",
+          "pocket2d",
+          "drilling",
+          "tapping"
+        ],
+        "toolTypes": [
+          "chamfer mill",
+          "drill",
+          "face mill",
+          "flat end mill",
+          "spot drill",
+          "tap right hand"
+        ]
+      },
+      "cam": {
+        "schemaVersion": 1,
+        "documentName": "Machining modular vise-01 step-1",
+        "extractedAt": "2026-05-26T18:00:00",
+        "setups": [
+          {
+            "setupName": "Setup1 — Modular Vise Body",
+            "operationType": 0,
+            "isSuppressed": false,
+            "stock": {
+              "x_mm": 220,
+              "y_mm": 140,
+              "z_mm": 35
+            },
+            "operations": [
+              {
+                "name": "Face top",
+                "strategy": "face",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 1,
+                  "description": "FACE MILL Ø50 4FL",
+                  "type": "face mill",
+                  "diameter_mm": 50,
+                  "flutes": 4,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 4500,
+                  "feed_cutting_mm_min": 2400,
+                  "feed_plunge_mm_min": 600
+                },
+                "geometry": {
+                  "stepdown_mm": 0.5,
+                  "stepover_mm": 35,
+                  "stock_to_leave_mm": 0.0
+                },
+                "cycle_time_min": 3.2
+              },
+              {
+                "name": "Adaptive rough",
+                "strategy": "adaptive2d",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 2,
+                  "description": "END MILL Ø12 3FL VHM",
+                  "type": "flat end mill",
+                  "diameter_mm": 12,
+                  "flutes": 3,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 12000,
+                  "feed_cutting_mm_min": 3200,
+                  "feed_plunge_mm_min": 800
+                },
+                "geometry": {
+                  "stepdown_mm": 8.0,
+                  "stepover_mm": 4.8,
+                  "stock_to_leave_mm": 0.2
+                },
+                "cycle_time_min": 18.4
+              },
+              {
+                "name": "2D Contour finish",
+                "strategy": "contour2d",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 2,
+                  "description": "END MILL Ø12 3FL VHM",
+                  "type": "flat end mill",
+                  "diameter_mm": 12,
+                  "flutes": 3,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 14000,
+                  "feed_cutting_mm_min": 1800,
+                  "feed_plunge_mm_min": 500
+                },
+                "geometry": {
+                  "stepdown_mm": 6.0,
+                  "stepover_mm": 0.3,
+                  "stock_to_leave_mm": 0.0
+                },
+                "cycle_time_min": 6.1
+              },
+              {
+                "name": "Pocket — jaw rails",
+                "strategy": "pocket2d",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 3,
+                  "description": "END MILL Ø8 4FL",
+                  "type": "flat end mill",
+                  "diameter_mm": 8,
+                  "flutes": 4,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 14000,
+                  "feed_cutting_mm_min": 1500,
+                  "feed_plunge_mm_min": 400
+                },
+                "geometry": {
+                  "stepdown_mm": 2.0,
+                  "stepover_mm": 3.2,
+                  "stock_to_leave_mm": 0.0
+                },
+                "cycle_time_min": 4.8
+              },
+              {
+                "name": "Spot drill",
+                "strategy": "drilling",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 4,
+                  "description": "SPOT DRILL Ø6 90°",
+                  "type": "spot drill",
+                  "diameter_mm": 6,
+                  "flutes": 2,
+                  "material": "HSS"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 3500,
+                  "feed_cutting_mm_min": 350,
+                  "feed_plunge_mm_min": 350
+                },
+                "geometry": {
+                  "stepdown_mm": null,
+                  "stepover_mm": null,
+                  "stock_to_leave_mm": null
+                },
+                "cycle_time_min": 1.3
+              },
+              {
+                "name": "Drill Ø6 (clearance)",
+                "strategy": "drilling",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 5,
+                  "description": "DRILL Ø6.1 HSS",
+                  "type": "drill",
+                  "diameter_mm": 6.1,
+                  "flutes": 2,
+                  "material": "HSS"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 2800,
+                  "feed_cutting_mm_min": 280,
+                  "feed_plunge_mm_min": 280
+                },
+                "geometry": {
+                  "stepdown_mm": null,
+                  "stepover_mm": null,
+                  "stock_to_leave_mm": null
+                },
+                "cycle_time_min": 2.1
+              },
+              {
+                "name": "Tap M8 thread",
+                "strategy": "tapping",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 6,
+                  "description": "TAP M8x1.25",
+                  "type": "tap right hand",
+                  "diameter_mm": 8,
+                  "flutes": 4,
+                  "material": "HSS-Co"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 600,
+                  "feed_cutting_mm_min": 750,
+                  "feed_plunge_mm_min": 750
+                },
+                "geometry": {
+                  "stepdown_mm": null,
+                  "stepover_mm": null,
+                  "stock_to_leave_mm": null
+                },
+                "cycle_time_min": 1.9
+              },
+              {
+                "name": "Chamfer edges",
+                "strategy": "contour2d",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 7,
+                  "description": "CHAMFER Ø6 90°",
+                  "type": "chamfer mill",
+                  "diameter_mm": 6,
+                  "flutes": 2,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 16000,
+                  "feed_cutting_mm_min": 1200,
+                  "feed_plunge_mm_min": 400
+                },
+                "geometry": {
+                  "stepdown_mm": null,
+                  "stepover_mm": null,
+                  "stock_to_leave_mm": 0.0
+                },
+                "cycle_time_min": 2.6
+              }
+            ],
+            "totalOperations": 8,
+            "totalCycleTimeMin": 40.4
+          }
+        ],
+        "uniqueTools": [
+          {
+            "number": 1,
+            "description": "FACE MILL Ø50 4FL",
+            "type": "face mill",
+            "diameter_mm": 50,
+            "flutes": 4,
+            "material": "carbide"
+          },
+          {
+            "number": 2,
+            "description": "END MILL Ø12 3FL VHM",
+            "type": "flat end mill",
+            "diameter_mm": 12,
+            "flutes": 3,
+            "material": "carbide"
+          },
+          {
+            "number": 3,
+            "description": "END MILL Ø8 4FL",
+            "type": "flat end mill",
+            "diameter_mm": 8,
+            "flutes": 4,
+            "material": "carbide"
+          },
+          {
+            "number": 4,
+            "description": "SPOT DRILL Ø6 90°",
+            "type": "spot drill",
+            "diameter_mm": 6,
+            "flutes": 2,
+            "material": "HSS"
+          },
+          {
+            "number": 5,
+            "description": "DRILL Ø6.1 HSS",
+            "type": "drill",
+            "diameter_mm": 6.1,
+            "flutes": 2,
+            "material": "HSS"
+          },
+          {
+            "number": 6,
+            "description": "TAP M8x1.25",
+            "type": "tap right hand",
+            "diameter_mm": 8,
+            "flutes": 4,
+            "material": "HSS-Co"
+          },
+          {
+            "number": 7,
+            "description": "CHAMFER Ø6 90°",
+            "type": "chamfer mill",
+            "diameter_mm": 6,
+            "flutes": 2,
+            "material": "carbide"
+          }
+        ],
+        "stats": {
+          "totalSetups": 1,
+          "totalOperations": 8,
+          "totalCycleTimeMin": 40.4,
+          "uniqueToolCount": 7
+        }
+      }
+    },
+    {
+      "slug": "plastic-6-pcs",
+      "title": "Plastic Plates — 6 pcs",
+      "material": "HDPE / engineering plastic",
+      "machine": "AP4060",
+      "difficulty": "easy",
+      "tags": [
+        "plastic",
+        "batch",
+        "3-axis",
+        "fixturing"
+      ],
+      "description": "Batch machining of 6 plastic plates in one setup. Demonstrates an\nefficient fixturing layout where the parts share a single zero point\nand toolpath dataset — every operation processes all 6 instances in\nsequence.\n\nTODO: edit this description before publishing.",
+      "shortSummary": "5 ops, ~20 min, HDPE / engineering plastic",
+      "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/plastic-6-pcs/preview.jpg",
+      "drive": {
+        "fileId": null,
+        "url": "#preview"
+      },
+      "summary": {
+        "totalSetups": 1,
+        "totalOperations": 5,
+        "totalCycleTimeMin": 20.4,
+        "uniqueToolCount": 4,
+        "strategies": [
+          "face",
+          "pocket2d",
+          "contour2d",
+          "drilling"
+        ],
+        "toolTypes": [
+          "chamfer mill",
+          "drill",
+          "face mill",
+          "flat end mill"
+        ]
+      },
+      "cam": {
+        "schemaVersion": 1,
+        "documentName": "Machining_Plastic- 6 Pcs",
+        "extractedAt": "2026-05-26T18:00:00",
+        "setups": [
+          {
+            "setupName": "Setup1 — 6× HDPE plates",
+            "operationType": 0,
+            "isSuppressed": false,
+            "stock": {
+              "x_mm": 320,
+              "y_mm": 220,
+              "z_mm": 12
+            },
+            "operations": [
+              {
+                "name": "Face",
+                "strategy": "face",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 1,
+                  "description": "FACE MILL Ø50 4FL",
+                  "type": "face mill",
+                  "diameter_mm": 50,
+                  "flutes": 4,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 8000,
+                  "feed_cutting_mm_min": 3500,
+                  "feed_plunge_mm_min": 800
+                },
+                "geometry": {
+                  "stepdown_mm": 0.3,
+                  "stepover_mm": 35,
+                  "stock_to_leave_mm": 0.0
+                },
+                "cycle_time_min": 2.1
+              },
+              {
+                "name": "Pocket — center slot",
+                "strategy": "pocket2d",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 2,
+                  "description": "END MILL Ø6 2FL — plastic",
+                  "type": "flat end mill",
+                  "diameter_mm": 6,
+                  "flutes": 2,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 18000,
+                  "feed_cutting_mm_min": 2800,
+                  "feed_plunge_mm_min": 600
+                },
+                "geometry": {
+                  "stepdown_mm": 4.0,
+                  "stepover_mm": 2.4,
+                  "stock_to_leave_mm": 0.0
+                },
+                "cycle_time_min": 8.4
+              },
+              {
+                "name": "Contour outline",
+                "strategy": "contour2d",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 2,
+                  "description": "END MILL Ø6 2FL — plastic",
+                  "type": "flat end mill",
+                  "diameter_mm": 6,
+                  "flutes": 2,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 18000,
+                  "feed_cutting_mm_min": 2400,
+                  "feed_plunge_mm_min": 500
+                },
+                "geometry": {
+                  "stepdown_mm": 6.0,
+                  "stepover_mm": null,
+                  "stock_to_leave_mm": 0.0
+                },
+                "cycle_time_min": 5.2
+              },
+              {
+                "name": "Drill Ø5 mounting",
+                "strategy": "drilling",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 3,
+                  "description": "DRILL Ø5 HSS",
+                  "type": "drill",
+                  "diameter_mm": 5,
+                  "flutes": 2,
+                  "material": "HSS"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 3200,
+                  "feed_cutting_mm_min": 400,
+                  "feed_plunge_mm_min": 400
+                },
+                "geometry": {
+                  "stepdown_mm": null,
+                  "stepover_mm": null,
+                  "stock_to_leave_mm": null
+                },
+                "cycle_time_min": 1.6
+              },
+              {
+                "name": "Chamfer edges",
+                "strategy": "contour2d",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 4,
+                  "description": "CHAMFER Ø6 90°",
+                  "type": "chamfer mill",
+                  "diameter_mm": 6,
+                  "flutes": 2,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 16000,
+                  "feed_cutting_mm_min": 1800,
+                  "feed_plunge_mm_min": 400
+                },
+                "geometry": {
+                  "stepdown_mm": null,
+                  "stepover_mm": null,
+                  "stock_to_leave_mm": 0.0
+                },
+                "cycle_time_min": 3.1
+              }
+            ],
+            "totalOperations": 5,
+            "totalCycleTimeMin": 20.4
+          }
+        ],
+        "uniqueTools": [
+          {
+            "number": 1,
+            "description": "FACE MILL Ø50 4FL",
+            "type": "face mill",
+            "diameter_mm": 50,
+            "flutes": 4,
+            "material": "carbide"
+          },
+          {
+            "number": 2,
+            "description": "END MILL Ø6 2FL — plastic",
+            "type": "flat end mill",
+            "diameter_mm": 6,
+            "flutes": 2,
+            "material": "carbide"
+          },
+          {
+            "number": 3,
+            "description": "DRILL Ø5 HSS",
+            "type": "drill",
+            "diameter_mm": 5,
+            "flutes": 2,
+            "material": "HSS"
+          },
+          {
+            "number": 4,
+            "description": "CHAMFER Ø6 90°",
+            "type": "chamfer mill",
+            "diameter_mm": 6,
+            "flutes": 2,
+            "material": "carbide"
+          }
+        ],
+        "stats": {
+          "totalSetups": 1,
+          "totalOperations": 5,
+          "totalCycleTimeMin": 20.4,
+          "uniqueToolCount": 4
+        }
+      }
+    },
+    {
+      "slug": "sisi-with-machine",
+      "title": "SISI — Organic Sculpt",
+      "material": "machinable wax / foam",
+      "machine": "AP4060",
+      "difficulty": "hard",
+      "tags": [
+        "3-axis",
+        "sculpt",
+        "organic",
+        "finishing"
+      ],
+      "description": "3-axis machining of a freeform organic surface. Uses adaptive clearing\nfor stock removal and parallel / scallop finishing for the curved\nsurfaces. Shows how Fusion 360 handles dense mesh geometry directly\ninside a CAM workflow.\n\nTODO: edit this description before publishing.",
+      "shortSummary": "5 ops, ~3.4 h, machinable wax / foam",
+      "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/sisi-with-machine/preview.jpg",
+      "drive": {
+        "fileId": null,
+        "url": "#preview"
+      },
+      "summary": {
+        "totalSetups": 1,
+        "totalOperations": 5,
+        "totalCycleTimeMin": 206.2,
+        "uniqueToolCount": 4,
+        "strategies": [
+          "adaptive3d",
+          "parallel",
+          "scallop",
+          "pencil"
+        ],
+        "toolTypes": [
+          "ball end mill",
+          "flat end mill"
+        ]
+      },
+      "cam": {
+        "schemaVersion": 1,
+        "documentName": "SISI With Machine",
+        "extractedAt": "2026-05-26T18:00:00",
+        "setups": [
+          {
+            "setupName": "Setup1 — Organic sculpt",
+            "operationType": 0,
+            "isSuppressed": false,
+            "stock": {
+              "x_mm": 260,
+              "y_mm": 180,
+              "z_mm": 90
+            },
+            "operations": [
+              {
+                "name": "Adaptive rough Ø10",
+                "strategy": "adaptive3d",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 1,
+                  "description": "END MILL Ø10 3FL VHM",
+                  "type": "flat end mill",
+                  "diameter_mm": 10,
+                  "flutes": 3,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 12000,
+                  "feed_cutting_mm_min": 3200,
+                  "feed_plunge_mm_min": 800
+                },
+                "geometry": {
+                  "stepdown_mm": 5.0,
+                  "stepover_mm": 4.5,
+                  "stock_to_leave_mm": 0.5
+                },
+                "cycle_time_min": 62.4
+              },
+              {
+                "name": "Rest rough Ø6 ball",
+                "strategy": "adaptive3d",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 2,
+                  "description": "BALL MILL Ø6 2FL",
+                  "type": "ball end mill",
+                  "diameter_mm": 6,
+                  "flutes": 2,
+                  "material": "carbide",
+                  "corner_radius_mm": 3.0
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 16000,
+                  "feed_cutting_mm_min": 2400,
+                  "feed_plunge_mm_min": 600
+                },
+                "geometry": {
+                  "stepdown_mm": 2.0,
+                  "stepover_mm": 2.0,
+                  "stock_to_leave_mm": 0.2
+                },
+                "cycle_time_min": 38.7
+              },
+              {
+                "name": "Parallel finish (XY)",
+                "strategy": "parallel",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 3,
+                  "description": "BALL MILL Ø6 2FL — finish",
+                  "type": "ball end mill",
+                  "diameter_mm": 6,
+                  "flutes": 2,
+                  "material": "carbide",
+                  "corner_radius_mm": 3.0
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 18000,
+                  "feed_cutting_mm_min": 1800,
+                  "feed_plunge_mm_min": 500
+                },
+                "geometry": {
+                  "stepdown_mm": null,
+                  "stepover_mm": 0.3,
+                  "stock_to_leave_mm": 0.0,
+                  "tolerance_mm": 0.005
+                },
+                "cycle_time_min": 55.2
+              },
+              {
+                "name": "Scallop finish",
+                "strategy": "scallop",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 4,
+                  "description": "BALL MILL Ø3 2FL",
+                  "type": "ball end mill",
+                  "diameter_mm": 3,
+                  "flutes": 2,
+                  "material": "carbide",
+                  "corner_radius_mm": 1.5
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 22000,
+                  "feed_cutting_mm_min": 1200,
+                  "feed_plunge_mm_min": 300
+                },
+                "geometry": {
+                  "stepdown_mm": null,
+                  "stepover_mm": 0.15,
+                  "stock_to_leave_mm": 0.0,
+                  "tolerance_mm": 0.003
+                },
+                "cycle_time_min": 41.6
+              },
+              {
+                "name": "Pencil finish",
+                "strategy": "pencil",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 4,
+                  "description": "BALL MILL Ø3 2FL",
+                  "type": "ball end mill",
+                  "diameter_mm": 3,
+                  "flutes": 2,
+                  "material": "carbide",
+                  "corner_radius_mm": 1.5
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 22000,
+                  "feed_cutting_mm_min": 1000,
+                  "feed_plunge_mm_min": 300
+                },
+                "geometry": {
+                  "stepdown_mm": null,
+                  "stepover_mm": null,
+                  "stock_to_leave_mm": 0.0,
+                  "tolerance_mm": 0.003
+                },
+                "cycle_time_min": 8.3
+              }
+            ],
+            "totalOperations": 5,
+            "totalCycleTimeMin": 206.2
+          }
+        ],
+        "uniqueTools": [
+          {
+            "number": 1,
+            "description": "END MILL Ø10 3FL VHM",
+            "type": "flat end mill",
+            "diameter_mm": 10,
+            "flutes": 3,
+            "material": "carbide"
+          },
+          {
+            "number": 2,
+            "description": "BALL MILL Ø6 2FL",
+            "type": "ball end mill",
+            "diameter_mm": 6,
+            "flutes": 2,
+            "material": "carbide",
+            "corner_radius_mm": 3.0
+          },
+          {
+            "number": 3,
+            "description": "BALL MILL Ø6 2FL — finish",
+            "type": "ball end mill",
+            "diameter_mm": 6,
+            "flutes": 2,
+            "material": "carbide",
+            "corner_radius_mm": 3.0
+          },
+          {
+            "number": 4,
+            "description": "BALL MILL Ø3 2FL",
+            "type": "ball end mill",
+            "diameter_mm": 3,
+            "flutes": 2,
+            "material": "carbide",
+            "corner_radius_mm": 1.5
+          }
+        ],
+        "stats": {
+          "totalSetups": 1,
+          "totalOperations": 5,
+          "totalCycleTimeMin": 206.2,
+          "uniqueToolCount": 4
+        }
+      }
+    },
+    {
+      "slug": "vacuum-plate",
+      "title": "Vacuum Fixture Plate (Grid)",
+      "material": "aluminum",
+      "machine": "AP4060",
+      "difficulty": "easy",
+      "tags": [
+        "aluminum",
+        "fixturing",
+        "3-axis",
+        "vacuum"
+      ],
+      "description": "Vacuum fixture base plate with a regular grid of square pockets. The\npocket pattern is generated as a single pattern operation — one of the\nsimplest yet most useful jobs for any router shop that holds plastic\nor thin metal sheets with vacuum.\n\nTODO: edit this description before publishing.",
+      "shortSummary": "3 ops, ~43 min, aluminum",
+      "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/vacuum-plate/preview.jpg",
+      "drive": {
+        "fileId": null,
+        "url": "#preview"
+      },
+      "summary": {
+        "totalSetups": 1,
+        "totalOperations": 3,
+        "totalCycleTimeMin": 42.8,
+        "uniqueToolCount": 3,
+        "strategies": [
+          "face",
+          "pocket2d",
+          "drilling"
+        ],
+        "toolTypes": [
+          "drill",
+          "face mill",
+          "flat end mill"
+        ]
+      },
+      "cam": {
+        "schemaVersion": 1,
+        "documentName": "Test-vacuum_plate",
+        "extractedAt": "2026-05-26T18:00:00",
+        "setups": [
+          {
+            "setupName": "Setup1 — Vacuum fixture",
+            "operationType": 0,
+            "isSuppressed": false,
+            "stock": {
+              "x_mm": 360,
+              "y_mm": 360,
+              "z_mm": 18
+            },
+            "operations": [
+              {
+                "name": "Face top",
+                "strategy": "face",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 1,
+                  "description": "FACE MILL Ø80 5FL",
+                  "type": "face mill",
+                  "diameter_mm": 80,
+                  "flutes": 5,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 3500,
+                  "feed_cutting_mm_min": 2800,
+                  "feed_plunge_mm_min": 700
+                },
+                "geometry": {
+                  "stepdown_mm": 0.4,
+                  "stepover_mm": 60,
+                  "stock_to_leave_mm": 0.0
+                },
+                "cycle_time_min": 4.6
+              },
+              {
+                "name": "Pocket pattern — 36×",
+                "strategy": "pocket2d",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 2,
+                  "description": "END MILL Ø12 3FL VHM",
+                  "type": "flat end mill",
+                  "diameter_mm": 12,
+                  "flutes": 3,
+                  "material": "carbide"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 11000,
+                  "feed_cutting_mm_min": 2400,
+                  "feed_plunge_mm_min": 600
+                },
+                "geometry": {
+                  "stepdown_mm": 3.0,
+                  "stepover_mm": 4.8,
+                  "stock_to_leave_mm": 0.0
+                },
+                "cycle_time_min": 32.4
+              },
+              {
+                "name": "Bore vacuum ports",
+                "strategy": "drilling",
+                "isSuppressed": false,
+                "hasToolpath": true,
+                "tool": {
+                  "number": 3,
+                  "description": "DRILL Ø4 HSS",
+                  "type": "drill",
+                  "diameter_mm": 4,
+                  "flutes": 2,
+                  "material": "HSS"
+                },
+                "feeds_speeds": {
+                  "spindle_rpm": 4000,
+                  "feed_cutting_mm_min": 300,
+                  "feed_plunge_mm_min": 300
+                },
+                "geometry": {
+                  "stepdown_mm": null,
+                  "stepover_mm": null,
+                  "stock_to_leave_mm": null
+                },
+                "cycle_time_min": 5.8
+              }
+            ],
+            "totalOperations": 3,
+            "totalCycleTimeMin": 42.8
+          }
+        ],
+        "uniqueTools": [
+          {
+            "number": 1,
+            "description": "FACE MILL Ø80 5FL",
+            "type": "face mill",
+            "diameter_mm": 80,
+            "flutes": 5,
+            "material": "carbide"
+          },
+          {
+            "number": 2,
+            "description": "END MILL Ø12 3FL VHM",
+            "type": "flat end mill",
+            "diameter_mm": 12,
+            "flutes": 3,
+            "material": "carbide"
+          },
+          {
+            "number": 3,
+            "description": "DRILL Ø4 HSS",
+            "type": "drill",
+            "diameter_mm": 4,
+            "flutes": 2,
+            "material": "HSS"
+          }
+        ],
+        "stats": {
+          "totalSetups": 1,
+          "totalOperations": 3,
+          "totalCycleTimeMin": 42.8,
+          "uniqueToolCount": 3
+        }
+      }
+    }
+  ]
+}

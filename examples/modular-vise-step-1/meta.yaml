@@ -1,0 +1,22 @@
+slug: modular-vise-step-1
+title: Modular Vise — Step 1
+source_document: "Machining modular vise-01 step-1"  # Fusion 360 doc.name; build_index.py joins with _extracted/<this>.cam.json
+
+material: 6061 aluminum
+machine: AP4060
+difficulty: medium      # easy | medium | hard
+tags: [aluminum, fixturing, 3-axis, vise, modular]
+
+drive:
+  file_id: ""               # fill after upload to "Public CNC Data/Examples/"
+  url: "#preview"           # PLACEHOLDER — replace with full Drive share URL
+
+preview: preview.jpg
+short_summary: ""       # one-line summary; if empty, build_index.py generates from stats
+
+description: |
+  Step 1 of machining a modular CNC vise body. Workpieces are clamped on a
+  custom fixture plate with a regular pattern of T-slots — multiple parts
+  are roughed and finished in a single setup to minimize handling time.
+
+  TODO: edit this description before publishing.

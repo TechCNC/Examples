@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "documentName": "Machining_Plastic- 6 Pcs",
+  "extractedAt": "2026-05-26T18:00:00",
+  "setups": [
+    {
+      "setupName": "Setup1 — 6× HDPE plates",
+      "operationType": 0,
+      "isSuppressed": false,
+      "stock": {"x_mm": 320, "y_mm": 220, "z_mm": 12},
+      "operations": [
+        {"name": "Face",            "strategy": "face",        "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 1, "description": "FACE MILL Ø50 4FL",    "type": "face mill",     "diameter_mm": 50, "flutes": 4, "material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 8000, "feed_cutting_mm_min": 3500, "feed_plunge_mm_min": 800},
+         "geometry":     {"stepdown_mm": 0.3, "stepover_mm": 35, "stock_to_leave_mm": 0.0},
+         "cycle_time_min": 2.1},
+
+        {"name": "Pocket — center slot","strategy": "pocket2d","isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 2, "description": "END MILL Ø6 2FL — plastic","type": "flat end mill","diameter_mm": 6, "flutes": 2, "material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 18000, "feed_cutting_mm_min": 2800, "feed_plunge_mm_min": 600},
+         "geometry":     {"stepdown_mm": 4.0, "stepover_mm": 2.4, "stock_to_leave_mm": 0.0},
+         "cycle_time_min": 8.4},
+
+        {"name": "Contour outline", "strategy": "contour2d",   "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 2, "description": "END MILL Ø6 2FL — plastic","type": "flat end mill","diameter_mm": 6, "flutes": 2, "material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 18000, "feed_cutting_mm_min": 2400, "feed_plunge_mm_min": 500},
+         "geometry":     {"stepdown_mm": 6.0, "stepover_mm": null, "stock_to_leave_mm": 0.0},
+         "cycle_time_min": 5.2},
+
+        {"name": "Drill Ø5 mounting","strategy": "drilling",   "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 3, "description": "DRILL Ø5 HSS",          "type": "drill",         "diameter_mm": 5, "flutes": 2, "material": "HSS"},
+         "feeds_speeds": {"spindle_rpm": 3200, "feed_cutting_mm_min": 400, "feed_plunge_mm_min": 400},
+         "geometry":     {"stepdown_mm": null, "stepover_mm": null, "stock_to_leave_mm": null},
+         "cycle_time_min": 1.6},
+
+        {"name": "Chamfer edges",   "strategy": "contour2d",   "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 4, "description": "CHAMFER Ø6 90°",        "type": "chamfer mill",  "diameter_mm": 6, "flutes": 2, "material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 16000, "feed_cutting_mm_min": 1800, "feed_plunge_mm_min": 400},
+         "geometry":     {"stepdown_mm": null, "stepover_mm": null, "stock_to_leave_mm": 0.0},
+         "cycle_time_min": 3.1}
+      ],
+      "totalOperations": 5,
+      "totalCycleTimeMin": 20.4
+    }
+  ],
+  "uniqueTools": [
+    {"number": 1, "description": "FACE MILL Ø50 4FL",            "type": "face mill",     "diameter_mm": 50, "flutes": 4, "material": "carbide"},
+    {"number": 2, "description": "END MILL Ø6 2FL — plastic",    "type": "flat end mill", "diameter_mm": 6,  "flutes": 2, "material": "carbide"},
+    {"number": 3, "description": "DRILL Ø5 HSS",                 "type": "drill",         "diameter_mm": 5,  "flutes": 2, "material": "HSS"},
+    {"number": 4, "description": "CHAMFER Ø6 90°",               "type": "chamfer mill",  "diameter_mm": 6,  "flutes": 2, "material": "carbide"}
+  ],
+  "stats": {"totalSetups": 1, "totalOperations": 5, "totalCycleTimeMin": 20.4, "uniqueToolCount": 4}
+}

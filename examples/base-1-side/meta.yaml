@@ -1,0 +1,23 @@
+slug: base-1-side
+title: Aluminum Base Plate — Single-Side Setup
+source_document: "Machining_base 1 side"
+
+material: 6061 aluminum
+machine: AP4060
+difficulty: easy
+tags: [aluminum, 3-axis, drilling, pocketing]
+
+drive:
+  file_id: ""
+  url: "#preview"             # PLACEHOLDER
+
+preview: preview.jpg
+short_summary: ""
+
+description: |
+  Single-sided machining of an aluminum base plate with two large circular
+  pockets and counterbore features. Demonstrates a basic but complete CAM
+  workflow: face, contour, pocket, bore, drill — produced from one work
+  coordinate system without flipping the part.
+
+  TODO: edit this description before publishing.

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "documentName": "Machining modular vise-01 step-1",
+  "extractedAt": "2026-05-26T18:00:00",
+  "setups": [
+    {
+      "setupName": "Setup1 — Modular Vise Body",
+      "operationType": 0,
+      "isSuppressed": false,
+      "stock": {"x_mm": 220, "y_mm": 140, "z_mm": 35},
+      "operations": [
+        {"name": "Face top",        "strategy": "face",        "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 1, "description": "FACE MILL Ø50 4FL", "type": "face mill",      "diameter_mm": 50, "flutes": 4, "material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 4500, "feed_cutting_mm_min": 2400, "feed_plunge_mm_min": 600},
+         "geometry":     {"stepdown_mm": 0.5, "stepover_mm": 35, "stock_to_leave_mm": 0.0},
+         "cycle_time_min": 3.2},
+
+        {"name": "Adaptive rough",  "strategy": "adaptive2d",  "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 2, "description": "END MILL Ø12 3FL VHM", "type": "flat end mill","diameter_mm": 12, "flutes": 3, "material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 12000, "feed_cutting_mm_min": 3200, "feed_plunge_mm_min": 800},
+         "geometry":     {"stepdown_mm": 8.0, "stepover_mm": 4.8, "stock_to_leave_mm": 0.2},
+         "cycle_time_min": 18.4},
+
+        {"name": "2D Contour finish","strategy": "contour2d",  "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 2, "description": "END MILL Ø12 3FL VHM", "type": "flat end mill","diameter_mm": 12, "flutes": 3, "material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 14000, "feed_cutting_mm_min": 1800, "feed_plunge_mm_min": 500},
+         "geometry":     {"stepdown_mm": 6.0, "stepover_mm": 0.3, "stock_to_leave_mm": 0.0},
+         "cycle_time_min": 6.1},
+
+        {"name": "Pocket — jaw rails","strategy": "pocket2d", "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 3, "description": "END MILL Ø8 4FL",     "type": "flat end mill","diameter_mm": 8,  "flutes": 4, "material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 14000, "feed_cutting_mm_min": 1500, "feed_plunge_mm_min": 400},
+         "geometry":     {"stepdown_mm": 2.0, "stepover_mm": 3.2, "stock_to_leave_mm": 0.0},
+         "cycle_time_min": 4.8},
+
+        {"name": "Spot drill",      "strategy": "drilling",    "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 4, "description": "SPOT DRILL Ø6 90°",   "type": "spot drill",   "diameter_mm": 6,  "flutes": 2, "material": "HSS"},
+         "feeds_speeds": {"spindle_rpm": 3500, "feed_cutting_mm_min": 350, "feed_plunge_mm_min": 350},
+         "geometry":     {"stepdown_mm": null, "stepover_mm": null, "stock_to_leave_mm": null},
+         "cycle_time_min": 1.3},
+
+        {"name": "Drill Ø6 (clearance)","strategy": "drilling","isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 5, "description": "DRILL Ø6.1 HSS",       "type": "drill",        "diameter_mm": 6.1,"flutes": 2, "material": "HSS"},
+         "feeds_speeds": {"spindle_rpm": 2800, "feed_cutting_mm_min": 280, "feed_plunge_mm_min": 280},
+         "geometry":     {"stepdown_mm": null, "stepover_mm": null, "stock_to_leave_mm": null},
+         "cycle_time_min": 2.1},
+
+        {"name": "Tap M8 thread",   "strategy": "tapping",     "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 6, "description": "TAP M8x1.25",          "type": "tap right hand","diameter_mm": 8, "flutes": 4, "material": "HSS-Co"},
+         "feeds_speeds": {"spindle_rpm": 600, "feed_cutting_mm_min": 750, "feed_plunge_mm_min": 750},
+         "geometry":     {"stepdown_mm": null, "stepover_mm": null, "stock_to_leave_mm": null},
+         "cycle_time_min": 1.9},
+
+        {"name": "Chamfer edges",   "strategy": "contour2d",   "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 7, "description": "CHAMFER Ø6 90°",       "type": "chamfer mill", "diameter_mm": 6,  "flutes": 2, "material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 16000, "feed_cutting_mm_min": 1200, "feed_plunge_mm_min": 400},
+         "geometry":     {"stepdown_mm": null, "stepover_mm": null, "stock_to_leave_mm": 0.0},
+         "cycle_time_min": 2.6}
+      ],
+      "totalOperations": 8,
+      "totalCycleTimeMin": 40.4
+    }
+  ],
+  "uniqueTools": [
+    {"number": 1, "description": "FACE MILL Ø50 4FL",   "type": "face mill",       "diameter_mm": 50,  "flutes": 4, "material": "carbide"},
+    {"number": 2, "description": "END MILL Ø12 3FL VHM","type": "flat end mill",   "diameter_mm": 12,  "flutes": 3, "material": "carbide"},
+    {"number": 3, "description": "END MILL Ø8 4FL",     "type": "flat end mill",   "diameter_mm": 8,   "flutes": 4, "material": "carbide"},
+    {"number": 4, "description": "SPOT DRILL Ø6 90°",   "type": "spot drill",      "diameter_mm": 6,   "flutes": 2, "material": "HSS"},
+    {"number": 5, "description": "DRILL Ø6.1 HSS",      "type": "drill",           "diameter_mm": 6.1, "flutes": 2, "material": "HSS"},
+    {"number": 6, "description": "TAP M8x1.25",         "type": "tap right hand",  "diameter_mm": 8,   "flutes": 4, "material": "HSS-Co"},
+    {"number": 7, "description": "CHAMFER Ø6 90°",      "type": "chamfer mill",    "diameter_mm": 6,   "flutes": 2, "material": "carbide"}
+  ],
+  "stats": {"totalSetups": 1, "totalOperations": 8, "totalCycleTimeMin": 40.4, "uniqueToolCount": 7}
+}

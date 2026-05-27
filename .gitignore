@@ -1,0 +1,22 @@
+# OS / Drive cruft
+desktop.ini
+Thumbs.db
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Local editor
+.vscode/
+.idea/
+
+# Build artifacts that aren't pushed
+*.log
+
+# Source CAD files — too heavy for git, hosted on Google Drive instead.
+# Files live in `_sources/` and sync to G: Drive automatically; the public
+# Drive folder (H:\My Drive\TECHCNC\Public CNC Data\Examples\) gets a copy
+# via `_scripts/copy_to_drive.ps1`.
+_sources/

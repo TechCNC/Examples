@@ -1,0 +1,23 @@
+slug: base
+title: Aluminum Bases on Modular Fixture
+source_document: "Machining_base"
+
+material: 6061 aluminum
+machine: AP4060
+difficulty: medium
+tags: [aluminum, fixturing, 3-axis, modular]
+
+drive:
+  file_id: ""
+  url: "#preview"             # PLACEHOLDER
+
+preview: preview.jpg
+short_summary: ""
+
+description: |
+  Machining two long aluminum bases simultaneously on a modular fixture
+  plate. The red volumes in the preview are the raw stock removed by
+  the program — typical demonstration of a high-MRR roughing pass
+  followed by finishing toolpaths.
+
+  TODO: edit this description before publishing.

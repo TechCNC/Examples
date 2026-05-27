@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "documentName": "Machining_base",
+  "extractedAt": "2026-05-26T18:00:00",
+  "setups": [
+    {
+      "setupName": "Setup1 — 2× Bases on modular fixture",
+      "operationType": 0,
+      "isSuppressed": false,
+      "stock": {"x_mm": 320, "y_mm": 180, "z_mm": 28},
+      "operations": [
+        {"name": "Face top",        "strategy": "face",        "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 1, "description": "FACE MILL Ø50 4FL",  "type": "face mill",     "diameter_mm": 50,"flutes": 4,"material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 4500, "feed_cutting_mm_min": 2400, "feed_plunge_mm_min": 600},
+         "geometry":     {"stepdown_mm": 0.5, "stepover_mm": 35, "stock_to_leave_mm": 0.0},
+         "cycle_time_min": 5.4},
+
+        {"name": "Adaptive rough — 2× parts","strategy": "adaptive2d","isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 2, "description": "END MILL Ø16 3FL VHM","type": "flat end mill","diameter_mm": 16,"flutes": 3,"material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 9500, "feed_cutting_mm_min": 3000, "feed_plunge_mm_min": 800},
+         "geometry":     {"stepdown_mm": 10.0,"stepover_mm": 6.4, "stock_to_leave_mm": 0.3},
+         "cycle_time_min": 32.1},
+
+        {"name": "Rest rough Ø8", "strategy": "adaptive2d",  "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 3, "description": "END MILL Ø8 4FL",     "type": "flat end mill","diameter_mm": 8, "flutes": 4,"material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 14000, "feed_cutting_mm_min": 2200, "feed_plunge_mm_min": 600},
+         "geometry":     {"stepdown_mm": 4.0, "stepover_mm": 3.2, "stock_to_leave_mm": 0.2},
+         "cycle_time_min": 14.8},
+
+        {"name": "2D Contour finish","strategy": "contour2d","isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 3, "description": "END MILL Ø8 4FL",     "type": "flat end mill","diameter_mm": 8, "flutes": 4,"material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 16000, "feed_cutting_mm_min": 1600, "feed_plunge_mm_min": 400},
+         "geometry":     {"stepdown_mm": 7.0, "stepover_mm": 0.2, "stock_to_leave_mm": 0.0},
+         "cycle_time_min": 9.5},
+
+        {"name": "Pocket — keyways","strategy": "pocket2d",  "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 3, "description": "END MILL Ø8 4FL",     "type": "flat end mill","diameter_mm": 8, "flutes": 4,"material": "carbide"},
+         "feeds_speeds": {"spindle_rpm": 14000, "feed_cutting_mm_min": 1400, "feed_plunge_mm_min": 400},
+         "geometry":     {"stepdown_mm": 3.0, "stepover_mm": 3.2, "stock_to_leave_mm": 0.0},
+         "cycle_time_min": 6.7},
+
+        {"name": "Spot drill",     "strategy": "drilling",   "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 4, "description": "SPOT DRILL Ø8 90°",   "type": "spot drill",    "diameter_mm": 8, "flutes": 2,"material": "HSS"},
+         "feeds_speeds": {"spindle_rpm": 3500, "feed_cutting_mm_min": 350, "feed_plunge_mm_min": 350},
+         "geometry":     {"stepdown_mm": null, "stepover_mm": null, "stock_to_leave_mm": null},
+         "cycle_time_min": 2.0},
+
+        {"name": "Drill Ø5",       "strategy": "drilling",   "isSuppressed": false, "hasToolpath": true,
+         "tool": {"number": 5, "description": "DRILL Ø5 HSS",         "type": "drill",         "diameter_mm": 5, "flutes": 2,"material": "HSS"},
+         "feeds_speeds": {"spindle_rpm": 3200, "feed_cutting_mm_min": 320, "feed_plunge_mm_min": 320},
+         "geometry":     {"stepdown_mm": null, "stepover_mm": null, "stock_to_leave_mm": null},
+         "cycle_time_min": 3.2}
+      ],
+      "totalOperations": 7,
+      "totalCycleTimeMin": 73.7
+    }
+  ],
+  "uniqueTools": [
+    {"number": 1, "description": "FACE MILL Ø50 4FL",    "type": "face mill",     "diameter_mm": 50,"flutes": 4,"material": "carbide"},
+    {"number": 2, "description": "END MILL Ø16 3FL VHM", "type": "flat end mill", "diameter_mm": 16,"flutes": 3,"material": "carbide"},
+    {"number": 3, "description": "END MILL Ø8 4FL",      "type": "flat end mill", "diameter_mm": 8, "flutes": 4,"material": "carbide"},
+    {"number": 4, "description": "SPOT DRILL Ø8 90°",    "type": "spot drill",    "diameter_mm": 8, "flutes": 2,"material": "HSS"},
+    {"number": 5, "description": "DRILL Ø5 HSS",         "type": "drill",         "diameter_mm": 5, "flutes": 2,"material": "HSS"}
+  ],
+  "stats": {"totalSetups": 1, "totalOperations": 7, "totalCycleTimeMin": 73.7, "uniqueToolCount": 5}
+}

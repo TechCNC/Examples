@@ -1,0 +1,20 @@
+# Force static serving for this folder — don't let WordPress's rewrite
+# in /public_html/ intercept and 404 us.
+DirectoryIndex index.html
+
+# Send UTF-8 charset so browsers don't fall back to Latin-1 and mangle
+# the © / em-dash / middle-dot characters used on the page.
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine Off
+</IfModule>
+
+# Long cache on the page itself — it fetches data from jsDelivr, so the
+# HTML can be cached aggressively without going stale.
+<IfModule mod_headers.c>
+    <FilesMatch "\.html$">
+        Header set Cache-Control "public, max-age=300"
+    </FilesMatch>
+</IfModule>

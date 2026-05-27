@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-27T01:21:57Z",
+  "generatedAt": "2026-05-27T10:20:04Z",
   "source": "github.com/TechCNC/Examples",
   "count": 6,
   "examples": [
@@ -20,8 +20,8 @@
       "shortSummary": "7 ops, ~1.2 h, 6061 aluminum",
       "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/base/preview.jpg",
       "drive": {
-        "fileId": null,
-        "url": "#preview"
+        "fileId": "1e_m7LhsWBl1EvHFt6dvISfP66ioql7Nr",
+        "url": "https://drive.google.com/uc?export=download&id=1e_m7LhsWBl1EvHFt6dvISfP66ioql7Nr"
       },
       "summary": {
         "totalSetups": 1,
@@ -303,8 +303,8 @@
       "shortSummary": "6 ops, ~26 min, 6061 aluminum",
       "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/base-1-side/preview.jpg",
       "drive": {
-        "fileId": null,
-        "url": "#preview"
+        "fileId": "1FBoanqwGs-Kk2qGpOdOVw2zuJ6F4qkbP",
+        "url": "https://drive.google.com/uc?export=download&id=1FBoanqwGs-Kk2qGpOdOVw2zuJ6F4qkbP"
       },
       "summary": {
         "totalSetups": 1,
@@ -554,8 +554,8 @@
       "shortSummary": "8 ops, ~40 min, 6061 aluminum",
       "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/modular-vise-step-1/preview.jpg",
       "drive": {
-        "fileId": null,
-        "url": "#preview"
+        "fileId": "1dJaltR4vdb84FttmaWPr-AulWAdTh_P0",
+        "url": "https://drive.google.com/uc?export=download&id=1dJaltR4vdb84FttmaWPr-AulWAdTh_P0"
       },
       "summary": {
         "totalSetups": 1,
@@ -881,8 +881,8 @@
       "shortSummary": "5 ops, ~20 min, HDPE / engineering plastic",
       "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/plastic-6-pcs/preview.jpg",
       "drive": {
-        "fileId": null,
-        "url": "#preview"
+        "fileId": "1DMObAKWRCSaCB1VMcFrTz-Y8hx0yfj8R",
+        "url": "https://drive.google.com/uc?export=download&id=1DMObAKWRCSaCB1VMcFrTz-Y8hx0yfj8R"
       },
       "summary": {
         "totalSetups": 1,
@@ -1105,8 +1105,8 @@
       "shortSummary": "5 ops, ~3.4 h, machinable wax / foam",
       "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/sisi-with-machine/preview.jpg",
       "drive": {
-        "fileId": null,
-        "url": "#preview"
+        "fileId": "1_-ddVzpUvjAj632_Q8OrVus7UjTvsUI0",
+        "url": "https://drive.google.com/uc?export=download&id=1_-ddVzpUvjAj632_Q8OrVus7UjTvsUI0"
       },
       "summary": {
         "totalSetups": 1,
@@ -1337,8 +1337,8 @@
       "shortSummary": "3 ops, ~43 min, aluminum",
       "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/vacuum-plate/preview.jpg",
       "drive": {
-        "fileId": null,
-        "url": "#preview"
+        "fileId": "1kPwTZ8UgEqgBwqTBhKgdIzvx5HJjjdYT",
+        "url": "https://drive.google.com/uc?export=download&id=1kPwTZ8UgEqgBwqTBhKgdIzvx5HJjjdYT"
       },
       "summary": {
         "totalSetups": 1,

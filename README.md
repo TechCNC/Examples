@@ -113,5 +113,12 @@ Each entry in `examples.json` has:
 
 ## License
 
-[MIT](LICENSE) — code, scripts, and JSON data.
-Preview images and CAM data are © TechCNC and shared for educational use.
+- **Code, scripts, and the `examples.json` index schema** — [MIT](LICENSE).
+- **Preview images, CAM data (`*.cam.json`), and the source `.f3d` / `.f3z`
+  files linked from each `meta.yaml`** — © TechCNC. All designs and CAM data
+  shown are the property of TechCNC and are shared for **personal and
+  educational use only**. Commercial use, redistribution, or derivative works
+  are not permitted without written permission.
+
+If you'd like to use any of this material commercially, please get in touch
+at [info@techcnc.ca](mailto:info@techcnc.ca).

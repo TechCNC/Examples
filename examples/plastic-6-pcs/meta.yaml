@@ -8,8 +8,8 @@ difficulty: easy
 tags: [plastic, batch, 3-axis, fixturing]
 
 drive:
-  file_id: ""
-  url: "#preview"             # PLACEHOLDER
+  file_id: "1DMObAKWRCSaCB1VMcFrTz-Y8hx0yfj8R"
+  url: "https://drive.google.com/uc?export=download&id=1DMObAKWRCSaCB1VMcFrTz-Y8hx0yfj8R"
 
 preview: preview.jpg
 short_summary: ""

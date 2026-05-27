@@ -8,8 +8,8 @@ difficulty: easy
 tags: [aluminum, fixturing, 3-axis, vacuum]
 
 drive:
-  file_id: ""
-  url: "#preview"             # PLACEHOLDER
+  file_id: "1kPwTZ8UgEqgBwqTBhKgdIzvx5HJjjdYT"
+  url: "https://drive.google.com/uc?export=download&id=1kPwTZ8UgEqgBwqTBhKgdIzvx5HJjjdYT"
 
 preview: preview.jpg
 short_summary: ""

@@ -8,8 +8,8 @@ difficulty: medium      # easy | medium | hard
 tags: [aluminum, fixturing, 3-axis, vise, modular]
 
 drive:
-  file_id: ""               # fill after upload to "Public CNC Data/Examples/"
-  url: "#preview"           # PLACEHOLDER — replace with full Drive share URL
+  file_id: "1dJaltR4vdb84FttmaWPr-AulWAdTh_P0"
+  url: "https://drive.google.com/uc?export=download&id=1dJaltR4vdb84FttmaWPr-AulWAdTh_P0"
 
 preview: preview.jpg
 short_summary: ""       # one-line summary; if empty, build_index.py generates from stats

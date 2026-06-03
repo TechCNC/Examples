@@ -1,0 +1,23 @@
+slug: holder-01
+title: Holder 01
+source_document: "Machining_holder-01 v4"
+
+material: 6061 aluminum
+machine: AP4060
+difficulty: medium
+tags: [aluminum, fixturing, 3-axis, pocketing, batch]
+
+drive:
+  file_id: "1dEHNpdSfR6alctb3Cq-0FlgDpLdML9Ql"
+  url: "https://drive.usercontent.google.com/download?id=1dEHNpdSfR6alctb3Cq-0FlgDpLdML9Ql&export=download&confirm=t"
+
+preview: preview.jpg
+short_summary: ""
+
+description: |
+  Multi-cavity holder machined from a single aluminum plate — rows of
+  rectangular pockets for batch fixturing of small parts. The whole sheet
+  is hogged out in one setup on the AP4060 with a roughing + finishing
+  pass for each pocket row.
+
+  TODO: edit this description before publishing.

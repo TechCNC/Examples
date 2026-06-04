@@ -727,13 +727,18 @@
             return acc.concat(s.operations || []);
         }, []) : [];
 
-        // Collapse repeated ops — Fusion auto-numbers copies as "Drill1 (4)",
-        // "2D Contour3 (2)", etc. Group by base name + strategy and show a
-        // single row with a ×N badge.
+        // Collapse repeated ops — Fusion names copies "Drill1 (4)",
+        // "2D Contour3 (2)", "2D Adaptive1 (3)", etc. Strip BOTH the "(N)"
+        // suffix AND the trailing digit on the operation root so that
+        // "2D Adaptive1 (2)" and "2D Adaptive2 (3)" both collapse to a
+        // single "2D Adaptive ×N" row.
         var grouped = [];
         var groupIdx = {};
         ops.forEach(function (op) {
-            var baseName = (op.name || '').replace(/\s*\(\d+\)\s*$/, '').trim() || '—';
+            var baseName = (op.name || '')
+                .replace(/\s*\(\d+\)\s*$/, '')   // drop trailing "(2)" / "(4)" / ...
+                .replace(/\d+\s*$/, '')           // drop trailing digit on root: "Drill1" -> "Drill"
+                .trim() || '—';
             var key = baseName + '||' + (op.strategy || '');
             if (groupIdx[key] === undefined) {
                 groupIdx[key] = grouped.length;

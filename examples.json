@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-04T00:31:11Z",
+  "generatedAt": "2026-06-04T00:31:55Z",
   "source": "github.com/TechCNC/Examples",
   "count": 8,
   "examples": [
@@ -4012,7 +4012,7 @@
     {
       "slug": "sisi-with-machine",
       "title": "SISI — Organic Sculpt",
-      "material": "machinable wax / foam",
+      "material": "6061 aluminum",
       "machine": "AP4060",
       "difficulty": "hard",
       "tags": [
@@ -4022,7 +4022,7 @@
         "finishing"
       ],
       "description": "3-axis machining of a freeform organic surface. Uses adaptive clearing\nfor stock removal and parallel / scallop finishing for the curved\nsurfaces. Shows how Fusion 360 handles dense mesh geometry directly\ninside a CAM workflow.\n\nTODO: edit this description before publishing.",
-      "shortSummary": "5 ops, ~3.4 h, machinable wax / foam",
+      "shortSummary": "5 ops, ~3.4 h, 6061 aluminum",
       "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/sisi-with-machine/preview.jpg",
       "driveFiles": [
         {

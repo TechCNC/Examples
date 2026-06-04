@@ -767,7 +767,7 @@
         }
       ],
       "totalOperations": 18,
-      "totalCycleTimeMin": null
+      "totalCycleTimeMin": 183.6
     },
     {
       "setupName": "Setup2",
@@ -861,7 +861,7 @@
         }
       ],
       "totalOperations": 2,
-      "totalCycleTimeMin": null
+      "totalCycleTimeMin": 20.4
     }
   ],
   "uniqueTools": [
@@ -934,7 +934,7 @@
   "stats": {
     "totalSetups": 2,
     "totalOperations": 20,
-    "totalCycleTimeMin": null,
+    "totalCycleTimeMin": 204,
     "uniqueToolCount": 5
   }
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-04T00:28:43Z",
+  "generatedAt": "2026-06-04T00:31:11Z",
   "source": "github.com/TechCNC/Examples",
   "count": 8,
   "examples": [
@@ -2197,7 +2197,7 @@
         "finishing"
       ],
       "description": "Two-stage aluminum mold machining: a separate Fusion file for each pass.\nThe first file (Mold 1) handles bulk material removal — adaptive roughing\nand 2D contouring to shape the cavity walls. The second file (Mold 2)\ncarries the finishing toolpaths: parallel and scallop passes for the\nsmooth curved surfaces of the two pointed mold cavities.\n\nTODO: edit this description before publishing.",
-      "shortSummary": "34 ops, 6061 aluminum",
+      "shortSummary": "34 ops, ~7.9 h, 6061 aluminum",
       "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/mold-machining/preview.jpg",
       "driveFiles": [
         {
@@ -2218,7 +2218,7 @@
       "summary": {
         "totalSetups": 3,
         "totalOperations": 34,
-        "totalCycleTimeMin": null,
+        "totalCycleTimeMin": 474.0,
         "uniqueToolCount": 5,
         "strategies": [
           "face",
@@ -2840,7 +2840,7 @@
               }
             ],
             "totalOperations": 14,
-            "totalCycleTimeMin": null
+            "totalCycleTimeMin": 270.0
           },
           {
             "setupName": "Setup1",
@@ -3606,7 +3606,7 @@
               }
             ],
             "totalOperations": 18,
-            "totalCycleTimeMin": null
+            "totalCycleTimeMin": 183.6
           },
           {
             "setupName": "Setup2",
@@ -3700,7 +3700,7 @@
               }
             ],
             "totalOperations": 2,
-            "totalCycleTimeMin": null
+            "totalCycleTimeMin": 20.4
           }
         ],
         "uniqueTools": [
@@ -3773,7 +3773,7 @@
         "stats": {
           "totalSetups": 3,
           "totalOperations": 34,
-          "totalCycleTimeMin": null,
+          "totalCycleTimeMin": 474.0,
           "uniqueToolCount": 5
         }
       }

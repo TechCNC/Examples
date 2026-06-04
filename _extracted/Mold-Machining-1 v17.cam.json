@@ -599,7 +599,7 @@
         }
       ],
       "totalOperations": 14,
-      "totalCycleTimeMin": null
+      "totalCycleTimeMin": 270.0
     }
   ],
   "uniqueTools": [
@@ -672,7 +672,7 @@
   "stats": {
     "totalSetups": 1,
     "totalOperations": 14,
-    "totalCycleTimeMin": null,
+    "totalCycleTimeMin": 270,
     "uniqueToolCount": 5
   }
 }

@@ -413,6 +413,17 @@
     border-radius: 99px;
     white-space: nowrap;
 }
+.tc-mex-ops-count {
+    display: inline-block;
+    margin-left: 6px;
+    font-family: var(--mex-font-mono);
+    font-size: 11px;
+    color: var(--mex-accent);
+    background: var(--mex-accent-tint);
+    padding: 1px 7px;
+    border-radius: 99px;
+    vertical-align: 2px;
+}
 
 .tc-mex-tools { display: flex; flex-direction: column; gap: 10px; }
 .tc-mex-tool-row {
@@ -716,6 +727,22 @@
             return acc.concat(s.operations || []);
         }, []) : [];
 
+        // Collapse repeated ops — Fusion auto-numbers copies as "Drill1 (4)",
+        // "2D Contour3 (2)", etc. Group by base name + strategy and show a
+        // single row with a ×N badge.
+        var grouped = [];
+        var groupIdx = {};
+        ops.forEach(function (op) {
+            var baseName = (op.name || '').replace(/\s*\(\d+\)\s*$/, '').trim() || '—';
+            var key = baseName + '||' + (op.strategy || '');
+            if (groupIdx[key] === undefined) {
+                groupIdx[key] = grouped.length;
+                grouped.push({ name: baseName, strategy: op.strategy, count: 1 });
+            } else {
+                grouped[groupIdx[key]].count++;
+            }
+        });
+
         var driveUrl = ex.drive && ex.drive.url;
         var driveBtn = driveUrl
             ? '<button type="button" class="tc-mex-btn tc-mex-btn-primary" data-dl-url="' + escapeHtml(driveUrl) + '">↓ Download .f3d / .f3z</button>'
@@ -725,14 +752,17 @@
         var stats = ex.summary || {};
         var time = cycleTimeLabel(stats.totalCycleTimeMin);
 
-        var opsHtml = ops.length ? (
+        var opsHtml = grouped.length ? (
             '<ol class="tc-mex-ops-list">' +
-            ops.map(function (op, i) {
+            grouped.map(function (g, i) {
                 var num = String(i + 1).padStart(2, '0');
-                var label = strategyLabel(op.strategy);
+                var label = strategyLabel(g.strategy);
+                var countBadge = g.count > 1
+                    ? ' <span class="tc-mex-ops-count">×' + g.count + '</span>'
+                    : '';
                 return '<li class="tc-mex-ops-item">' +
                     '<span class="tc-mex-ops-num">' + num + '</span>' +
-                    '<span class="tc-mex-ops-name">' + escapeHtml(op.name || '—') + '</span>' +
+                    '<span class="tc-mex-ops-name">' + escapeHtml(g.name) + countBadge + '</span>' +
                     (label ? '<span class="tc-mex-ops-strategy">' + escapeHtml(label) + '</span>' : '<span></span>') +
                 '</li>';
             }).join('') +

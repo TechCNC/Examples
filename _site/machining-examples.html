@@ -330,8 +330,30 @@
     background: var(--mex-bg-2);
     overflow: hidden;
     border-bottom: 1px solid var(--mex-border);
+    position: relative;
 }
 .tc-mex-modal-hero img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+.tc-mex-share {
+    position: absolute;
+    bottom: 14px; left: 14px;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px;
+    font-family: var(--mex-font-mono);
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--mex-text);
+    background: rgba(255,255,255,.92);
+    border: 1px solid var(--mex-border);
+    border-radius: var(--mex-radius);
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: border-color .15s, color .15s, background .15s;
+}
+.tc-mex-share:hover { border-color: var(--mex-accent); color: var(--mex-accent); }
+.tc-mex-share.is-copied { border-color: var(--mex-accent); color: var(--mex-accent); background: var(--mex-accent-tint); }
+.tc-mex-share-icon { font-size: 14px; line-height: 1; }
 
 .tc-mex-modal-content { padding: 32px 36px 40px; }
 .tc-mex-modal-title {
@@ -805,7 +827,12 @@
 
         $modalBody.innerHTML = (
             '<button class="tc-mex-modal-close" aria-label="Close" type="button">&times;</button>' +
-            '<div class="tc-mex-modal-hero"><img src="' + escapeHtml(ex.preview) + '" alt=""></div>' +
+            '<div class="tc-mex-modal-hero">' +
+                '<img src="' + escapeHtml(ex.preview) + '" alt="">' +
+                '<button type="button" class="tc-mex-share" data-share-slug="' + escapeHtml(ex.slug) + '" data-share-title="' + escapeHtml(ex.title) + '">' +
+                    '<span class="tc-mex-share-icon">⤴</span> Share' +
+                '</button>' +
+            '</div>' +
             '<div class="tc-mex-modal-content">' +
                 '<h2 class="tc-mex-modal-title">' + escapeHtml(ex.title) + '</h2>' +
                 '<div class="tc-mex-modal-meta">' +
@@ -851,6 +878,43 @@
                 if (url) window.open(url, '_blank', 'noopener');
             });
         });
+
+        // Share button — Web Share API on mobile, clipboard copy on desktop.
+        var $share = $modalBody.querySelector('[data-share-slug]');
+        if ($share) {
+            $share.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var slug = $share.getAttribute('data-share-slug');
+                var title = $share.getAttribute('data-share-title') || 'TechCNC Example';
+                // Use the bare URL without query/fragment as the base, then add
+                // the per-example hash so visitors land directly on this modal.
+                var baseUrl = location.origin + location.pathname;
+                var shareUrl = baseUrl + '#example=' + encodeURIComponent(slug);
+                if (navigator.share) {
+                    navigator.share({ title: title, url: shareUrl }).catch(function () {});
+                } else if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(shareUrl).then(function () {
+                        var orig = $share.innerHTML;
+                        $share.innerHTML = '<span class="tc-mex-share-icon">✓</span> Link copied';
+                        $share.classList.add('is-copied');
+                        setTimeout(function () {
+                            $share.innerHTML = orig;
+                            $share.classList.remove('is-copied');
+                        }, 1800);
+                    });
+                } else {
+                    // Last-resort fallback — just open in a new tab so the user
+                    // can copy from the address bar.
+                    window.prompt('Copy this link:', shareUrl);
+                }
+            });
+        }
+
+        // Reflect the open modal in the URL hash so the link is shareable.
+        try {
+            history.replaceState(null, '', '#example=' + encodeURIComponent(slug));
+        } catch (e) {}
     }
 
     function closeModal() {
@@ -858,6 +922,17 @@
         $modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
         $modalBody.innerHTML = '';
+        // Strip the #example= hash so the URL stays clean after closing.
+        if (location.hash.indexOf('#example=') === 0) {
+            try { history.replaceState(null, '', location.pathname + location.search); }
+            catch (e) {}
+        }
+    }
+
+    // Deep-link support — open the modal for ?#example=<slug> on page load.
+    function openFromHash() {
+        var m = /#example=([^&]+)/.exec(location.hash || '');
+        if (m && STATE.all.length) openModal(decodeURIComponent(m[1]));
     }
 
     $modal.addEventListener('click', function (e) { if (e.target === $modal) closeModal(); });
@@ -891,6 +966,7 @@
             }
             buildFilters();
             renderGrid();
+            openFromHash();
         })
         .catch(function (err) {
             console.error('[tc-mex] failed to load examples.json', err);

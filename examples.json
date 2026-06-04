@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-04T00:00:20Z",
+  "generatedAt": "2026-06-04T00:24:00Z",
   "source": "github.com/TechCNC/Examples",
-  "count": 7,
+  "count": 8,
   "examples": [
     {
       "slug": "base",
@@ -19,6 +19,13 @@
       "description": "Machining two long aluminum bases simultaneously on a modular fixture\nplate. The red volumes in the preview are the raw stock removed by\nthe program — typical demonstration of a high-MRR roughing pass\nfollowed by finishing toolpaths.\n\nTODO: edit this description before publishing.",
       "shortSummary": "7 ops, ~1.2 h, 6061 aluminum",
       "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/base/preview.jpg",
+      "driveFiles": [
+        {
+          "label": "Download .f3d / .f3z",
+          "fileId": "1BdDl0IdEEa3zihsg9pSXRvJBrFwHXank",
+          "url": "https://drive.usercontent.google.com/download?id=1BdDl0IdEEa3zihsg9pSXRvJBrFwHXank&export=download&confirm=t"
+        }
+      ],
       "drive": {
         "fileId": "1BdDl0IdEEa3zihsg9pSXRvJBrFwHXank",
         "url": "https://drive.usercontent.google.com/download?id=1BdDl0IdEEa3zihsg9pSXRvJBrFwHXank&export=download&confirm=t"
@@ -302,6 +309,13 @@
       "description": "Single-sided machining of an aluminum base plate with two large circular\npockets and counterbore features. Demonstrates a basic but complete CAM\nworkflow: face, contour, pocket, bore, drill — produced from one work\ncoordinate system without flipping the part.\n\nTODO: edit this description before publishing.",
       "shortSummary": "6 ops, ~26 min, 6061 aluminum",
       "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/base-1-side/preview.jpg",
+      "driveFiles": [
+        {
+          "label": "Download .f3d / .f3z",
+          "fileId": "1CipPrJ7RyKfpdg7MY5efJjOawdxmKpXF",
+          "url": "https://drive.usercontent.google.com/download?id=1CipPrJ7RyKfpdg7MY5efJjOawdxmKpXF&export=download&confirm=t"
+        }
+      ],
       "drive": {
         "fileId": "1CipPrJ7RyKfpdg7MY5efJjOawdxmKpXF",
         "url": "https://drive.usercontent.google.com/download?id=1CipPrJ7RyKfpdg7MY5efJjOawdxmKpXF&export=download&confirm=t"
@@ -553,6 +567,13 @@
       "description": "Multi-cavity holder machined from a single aluminum plate — rows of\nrectangular pockets for batch fixturing of small parts. The whole sheet\nis hogged out in one setup on the AP4060 with a roughing + finishing\npass for each pocket row.\n\nTODO: edit this description before publishing.",
       "shortSummary": "28 ops, ~4.2 h, 6061 aluminum",
       "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/holder-01/preview.jpg",
+      "driveFiles": [
+        {
+          "label": "Download .f3d / .f3z",
+          "fileId": "1dEHNpdSfR6alctb3Cq-0FlgDpLdML9Ql",
+          "url": "https://drive.usercontent.google.com/download?id=1dEHNpdSfR6alctb3Cq-0FlgDpLdML9Ql&export=download&confirm=t"
+        }
+      ],
       "drive": {
         "fileId": "1dEHNpdSfR6alctb3Cq-0FlgDpLdML9Ql",
         "url": "https://drive.usercontent.google.com/download?id=1dEHNpdSfR6alctb3Cq-0FlgDpLdML9Ql&export=download&confirm=t"
@@ -1844,6 +1865,13 @@
       "description": "Step 1 of machining a modular CNC vise body. Workpieces are clamped on a\ncustom fixture plate with a regular pattern of T-slots — multiple parts\nare roughed and finished in a single setup to minimize handling time.\n\nTODO: edit this description before publishing.",
       "shortSummary": "8 ops, ~40 min, 6061 aluminum",
       "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/modular-vise-step-1/preview.jpg",
+      "driveFiles": [
+        {
+          "label": "Download .f3d / .f3z",
+          "fileId": "1Glzp3zp7zGSfEKEPDRqinFYM8d5MYiQM",
+          "url": "https://drive.usercontent.google.com/download?id=1Glzp3zp7zGSfEKEPDRqinFYM8d5MYiQM&export=download&confirm=t"
+        }
+      ],
       "drive": {
         "fileId": "1Glzp3zp7zGSfEKEPDRqinFYM8d5MYiQM",
         "url": "https://drive.usercontent.google.com/download?id=1Glzp3zp7zGSfEKEPDRqinFYM8d5MYiQM&export=download&confirm=t"
@@ -2157,6 +2185,47 @@
       }
     },
     {
+      "slug": "mold-machining",
+      "title": "Mold Machining",
+      "material": "6061 aluminum",
+      "machine": "AP4060",
+      "difficulty": "hard",
+      "tags": [
+        "aluminum",
+        "3-axis",
+        "mold",
+        "finishing"
+      ],
+      "description": "Two-stage aluminum mold machining: a separate Fusion file for each pass.\nThe first file (Mold 1) handles bulk material removal — adaptive roughing\nand 2D contouring to shape the cavity walls. The second file (Mold 2)\ncarries the finishing toolpaths: parallel and scallop passes for the\nsmooth curved surfaces of the two pointed mold cavities.\n\nTODO: edit this description before publishing.",
+      "shortSummary": "6061 aluminum",
+      "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/mold-machining/preview.jpg",
+      "driveFiles": [
+        {
+          "label": "Mold 1 — Roughing (.f3z)",
+          "fileId": "1qRgPOiVrnxBj3gV4r-UxLkw8XsB2224M",
+          "url": "https://drive.usercontent.google.com/download?id=1qRgPOiVrnxBj3gV4r-UxLkw8XsB2224M&export=download&confirm=t"
+        },
+        {
+          "label": "Mold 2 — Finishing (.f3d)",
+          "fileId": "1LMSo-5TPw_nOHSK6JZo3a-Lu0BYV2kSf",
+          "url": "https://drive.usercontent.google.com/download?id=1LMSo-5TPw_nOHSK6JZo3a-Lu0BYV2kSf&export=download&confirm=t"
+        }
+      ],
+      "drive": {
+        "fileId": "1qRgPOiVrnxBj3gV4r-UxLkw8XsB2224M",
+        "url": "https://drive.usercontent.google.com/download?id=1qRgPOiVrnxBj3gV4r-UxLkw8XsB2224M&export=download&confirm=t"
+      },
+      "summary": {
+        "totalSetups": 0,
+        "totalOperations": 0,
+        "totalCycleTimeMin": null,
+        "uniqueToolCount": 0,
+        "strategies": [],
+        "toolTypes": []
+      },
+      "cam": null
+    },
+    {
       "slug": "plastic-6-pcs",
       "title": "Plastic Plates",
       "material": "HDPE / engineering plastic",
@@ -2171,6 +2240,13 @@
       "description": "Batch machining of 6 plastic plates in one setup. Demonstrates an\nefficient fixturing layout where the parts share a single zero point\nand toolpath dataset — every operation processes all 6 instances in\nsequence.\n\nTODO: edit this description before publishing.",
       "shortSummary": "5 ops, ~20 min, HDPE / engineering plastic",
       "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/plastic-6-pcs/preview.jpg",
+      "driveFiles": [
+        {
+          "label": "Download .f3d / .f3z",
+          "fileId": "1_Tvw2hSZCWuRMGlJwBaVVnSzpIAHct7C",
+          "url": "https://drive.usercontent.google.com/download?id=1_Tvw2hSZCWuRMGlJwBaVVnSzpIAHct7C&export=download&confirm=t"
+        }
+      ],
       "drive": {
         "fileId": "1_Tvw2hSZCWuRMGlJwBaVVnSzpIAHct7C",
         "url": "https://drive.usercontent.google.com/download?id=1_Tvw2hSZCWuRMGlJwBaVVnSzpIAHct7C&export=download&confirm=t"
@@ -2395,6 +2471,13 @@
       "description": "3-axis machining of a freeform organic surface. Uses adaptive clearing\nfor stock removal and parallel / scallop finishing for the curved\nsurfaces. Shows how Fusion 360 handles dense mesh geometry directly\ninside a CAM workflow.\n\nTODO: edit this description before publishing.",
       "shortSummary": "5 ops, ~3.4 h, machinable wax / foam",
       "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/sisi-with-machine/preview.jpg",
+      "driveFiles": [
+        {
+          "label": "Download .f3d / .f3z",
+          "fileId": "1jhO-mt27zvf2_HWXEKG2B_B1wdJQq_6K",
+          "url": "https://drive.usercontent.google.com/download?id=1jhO-mt27zvf2_HWXEKG2B_B1wdJQq_6K&export=download&confirm=t"
+        }
+      ],
       "drive": {
         "fileId": "1jhO-mt27zvf2_HWXEKG2B_B1wdJQq_6K",
         "url": "https://drive.usercontent.google.com/download?id=1jhO-mt27zvf2_HWXEKG2B_B1wdJQq_6K&export=download&confirm=t"
@@ -2627,6 +2710,13 @@
       "description": "Vacuum fixture base plate with a regular grid of square pockets. The\npocket pattern is generated as a single pattern operation — one of the\nsimplest yet most useful jobs for any router shop that holds plastic\nor thin metal sheets with vacuum.\n\nTODO: edit this description before publishing.",
       "shortSummary": "3 ops, ~43 min, aluminum",
       "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/vacuum-plate/preview.jpg",
+      "driveFiles": [
+        {
+          "label": "Download .f3d / .f3z",
+          "fileId": "1mwcg28WSJLTTeQSUrQWBSQOFq-zSL8zO",
+          "url": "https://drive.usercontent.google.com/download?id=1mwcg28WSJLTTeQSUrQWBSQOFq-zSL8zO&export=download&confirm=t"
+        }
+      ],
       "drive": {
         "fileId": "1mwcg28WSJLTTeQSUrQWBSQOFq-zSL8zO",
         "url": "https://drive.usercontent.google.com/download?id=1mwcg28WSJLTTeQSUrQWBSQOFq-zSL8zO&export=download&confirm=t"

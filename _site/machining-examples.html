@@ -748,9 +748,18 @@
             }
         });
 
-        var driveUrl = ex.drive && ex.drive.url;
-        var driveBtn = driveUrl
-            ? '<button type="button" class="tc-mex-btn tc-mex-btn-primary" data-dl-url="' + escapeHtml(driveUrl) + '">↓ Download .f3d / .f3z</button>'
+        // Multi-file download — render one orange CTA per drive file. Falls
+        // back to the legacy single `ex.drive.url` for back-compat.
+        var driveFiles = (ex.driveFiles && ex.driveFiles.length)
+            ? ex.driveFiles
+            : (ex.drive && ex.drive.url
+                ? [{ label: 'Download .f3d / .f3z', url: ex.drive.url }]
+                : []);
+        var driveBtn = driveFiles.length
+            ? driveFiles.map(function (f) {
+                return '<button type="button" class="tc-mex-btn tc-mex-btn-primary" data-dl-url="' +
+                    escapeHtml(f.url) + '">↓ ' + escapeHtml(f.label || 'Download') + '</button>';
+            }).join('')
             : '<span class="tc-mex-btn tc-mex-btn-primary" aria-disabled="true">↓ Download (not published yet)</span>';
 
         var diff = ex.difficulty || '';
@@ -828,18 +837,17 @@
         $modalBody.querySelector('.tc-mex-modal-close').addEventListener('click', closeModal);
         $modalBody.querySelectorAll('[data-close]').forEach(function (b) { b.addEventListener('click', closeModal); });
 
-        // Download button — explicit window.open prevents browser quirks where
-        // clicking <a target=_blank> or <a download> closes the modal / opens
-        // a "Save as .htm" dialog instead of streaming the file.
-        var dlBtn = $modalBody.querySelector('[data-dl-url]');
-        if (dlBtn) {
-            dlBtn.addEventListener('click', function (e) {
+        // Download buttons — explicit window.open prevents browser quirks
+        // where clicking <a target=_blank> or <a download> closes the modal
+        // or pops a "Save as .htm" dialog instead of streaming the file.
+        $modalBody.querySelectorAll('[data-dl-url]').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                var url = dlBtn.getAttribute('data-dl-url');
+                var url = btn.getAttribute('data-dl-url');
                 if (url) window.open(url, '_blank', 'noopener');
             });
-        }
+        });
     }
 
     function closeModal() {

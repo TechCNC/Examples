@@ -60,9 +60,92 @@ def load_cam_json(source_document: str) -> dict | None:
         safe = "".join(ch if ch.isalnum() or ch in "-_. " else "_" for ch in source_document).strip()
         candidate = EXTRACTED_DIR / f"{safe}.cam.json"
     if not candidate.exists():
-        return None
+        # last try — fuzzy match for Fusion's " vN" version suffix
+        matches = sorted(EXTRACTED_DIR.glob(f"{source_document}*.cam.json"))
+        if matches:
+            candidate = matches[-1]
+        else:
+            return None
     with candidate.open("r", encoding="utf-8") as f:
         return json.load(f)
+
+
+def merge_cam(cams: list[dict]) -> dict | None:
+    """Combine several extracted CAM dumps into one — for multi-file examples."""
+    cams = [c for c in cams if c]
+    if not cams:
+        return None
+    if len(cams) == 1:
+        return cams[0]
+    merged = {
+        "schemaVersion": cams[0].get("schemaVersion", 1),
+        "documentName": " + ".join(c.get("documentName", "?") for c in cams),
+        "extractedAt": cams[0].get("extractedAt"),
+        "setups": [],
+        "uniqueTools": [],
+    }
+    seen_tools = set()
+    total_setups = 0
+    total_ops = 0
+    total_time = 0.0
+    for c in cams:
+        for s in c.get("setups", []):
+            merged["setups"].append(s)
+            total_setups += 1
+            total_ops += s.get("totalOperations", 0)
+            ct = s.get("totalCycleTimeMin")
+            if ct:
+                total_time += ct
+        for t in c.get("uniqueTools", []):
+            key = (t.get("number"), t.get("description"))
+            if key not in seen_tools:
+                seen_tools.add(key)
+                merged["uniqueTools"].append(t)
+    merged["stats"] = {
+        "totalSetups": total_setups,
+        "totalOperations": total_ops,
+        "totalCycleTimeMin": round(total_time, 2) if total_time else None,
+        "uniqueToolCount": len(merged["uniqueTools"]),
+    }
+    return merged
+
+
+def resolve_source_documents(meta: dict) -> list[str]:
+    """Return a list — supports new `source_documents` and legacy `source_document`."""
+    docs = meta.get("source_documents")
+    if isinstance(docs, list) and docs:
+        return [str(d) for d in docs if d]
+    single = meta.get("source_document")
+    return [str(single)] if single else []
+
+
+def resolve_drive_files(meta: dict) -> list[dict]:
+    """Return [{label, file_id, url}, ...] for the modal download buttons."""
+    files = meta.get("drive_files")
+    if isinstance(files, list) and files:
+        out = []
+        for f in files:
+            if not isinstance(f, dict):
+                continue
+            url = f.get("url")
+            if not url:
+                continue
+            out.append({
+                "label": f.get("label") or "Download",
+                "fileId": f.get("file_id"),
+                "url": url,
+            })
+        return out
+    # Legacy single drive entry
+    legacy = meta.get("drive") or {}
+    url = legacy.get("url")
+    if url:
+        return [{
+            "label": "Download .f3d / .f3z",
+            "fileId": legacy.get("file_id"),
+            "url": url,
+        }]
+    return []
 
 
 def summarize_cam(cam: dict | None) -> dict:
@@ -132,10 +215,9 @@ def render_downloads_table(examples: list[dict]) -> str:
             time_label = f"~{ct/60:.1f} h" if ct >= 60 else f"~{int(round(ct))} min"
         else:
             time_label = "—"
-        drive = ex.get("drive") or {}
-        url = drive.get("url")
-        if url:
-            link = f"[⬇ Download]({url})"
+        files = ex.get("driveFiles") or []
+        if files:
+            link = " · ".join(f"[⬇ {f.get('label') or 'Download'}]({f['url']})" for f in files)
         else:
             link = "_pending_"
         rows.append(f"| **{title}** | {material} | {time_label} | {link} |")
@@ -188,17 +270,21 @@ def main() -> int:
             continue
 
         meta = load_yaml(meta_path)
-        cam = load_cam_json(meta.get("source_document"))
-        if cam is None and meta.get("source_document"):
-            warnings.append(f"[warn] {slug}: cam.json not found for "
-                            f"source_document='{meta['source_document']}'")
+
+        # Load CAM data — merge multiple if source_documents is a list.
+        source_docs = resolve_source_documents(meta)
+        cams = [load_cam_json(d) for d in source_docs]
+        missing = [d for d, c in zip(source_docs, cams) if c is None]
+        for d in missing:
+            warnings.append(f"[warn] {slug}: cam.json not found for source_document='{d}'")
+        cam = merge_cam([c for c in cams if c])
 
         summary = summarize_cam(cam)
         short = meta.get("short_summary") or default_short_summary(meta, summary)
 
-        drive = meta.get("drive") or {}
-        if not drive.get("url"):
-            warnings.append(f"[warn] {slug}: drive.url is empty")
+        drive_files = resolve_drive_files(meta)
+        if not drive_files:
+            warnings.append(f"[warn] {slug}: no drive URL(s)")
 
         item = {
             "slug": meta.get("slug") or slug,
@@ -210,9 +296,12 @@ def main() -> int:
             "description": (meta.get("description") or "").strip(),
             "shortSummary": short,
             "preview": asset_url(slug, meta.get("preview") or "preview.jpg"),
+            # `driveFiles` is the new canonical multi-file array. `drive`
+            # stays for back-compat with older clients reading examples.json.
+            "driveFiles": drive_files,
             "drive": {
-                "fileId": drive.get("file_id") or None,
-                "url": drive.get("url") or None,
+                "fileId": (drive_files[0] if drive_files else {}).get("fileId"),
+                "url":    (drive_files[0] if drive_files else {}).get("url"),
             },
             "summary": summary,
             # Full per-op data — included so the modal can show feeds/speeds.

@@ -1,0 +1,33 @@
+slug: mold-machining
+title: Mold Machining
+
+# Multi-file example — two Fusion documents make up this job.
+source_documents:
+  - "Mold-Machining-1"
+  - "Mold-Machining-2"
+
+material: 6061 aluminum
+machine: AP4060
+difficulty: hard
+tags: [aluminum, 3-axis, mold, finishing]
+
+# Multiple download files — each rendered as a separate button in the modal.
+drive_files:
+  - label: "Mold 1 — Roughing (.f3z)"
+    file_id: "1qRgPOiVrnxBj3gV4r-UxLkw8XsB2224M"
+    url: "https://drive.usercontent.google.com/download?id=1qRgPOiVrnxBj3gV4r-UxLkw8XsB2224M&export=download&confirm=t"
+  - label: "Mold 2 — Finishing (.f3d)"
+    file_id: "1LMSo-5TPw_nOHSK6JZo3a-Lu0BYV2kSf"
+    url: "https://drive.usercontent.google.com/download?id=1LMSo-5TPw_nOHSK6JZo3a-Lu0BYV2kSf&export=download&confirm=t"
+
+preview: preview.jpg
+short_summary: ""
+
+description: |
+  Two-stage aluminum mold machining: a separate Fusion file for each pass.
+  The first file (Mold 1) handles bulk material removal — adaptive roughing
+  and 2D contouring to shape the cavity walls. The second file (Mold 2)
+  carries the finishing toolpaths: parallel and scallop passes for the
+  smooth curved surfaces of the two pointed mold cavities.
+
+  TODO: edit this description before publishing.

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-03T23:57:05Z",
+  "generatedAt": "2026-06-04T00:00:20Z",
   "source": "github.com/TechCNC/Examples",
   "count": 7,
   "examples": [
@@ -551,7 +551,7 @@
         "batch"
       ],
       "description": "Multi-cavity holder machined from a single aluminum plate — rows of\nrectangular pockets for batch fixturing of small parts. The whole sheet\nis hogged out in one setup on the AP4060 with a roughing + finishing\npass for each pocket row.\n\nTODO: edit this description before publishing.",
-      "shortSummary": "28 ops, 6061 aluminum",
+      "shortSummary": "28 ops, ~4.2 h, 6061 aluminum",
       "preview": "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples/holder-01/preview.jpg",
       "drive": {
         "fileId": "1dEHNpdSfR6alctb3Cq-0FlgDpLdML9Ql",
@@ -560,7 +560,7 @@
       "summary": {
         "totalSetups": 1,
         "totalOperations": 28,
-        "totalCycleTimeMin": null,
+        "totalCycleTimeMin": 252,
         "uniqueToolCount": 4,
         "strategies": [
           "drill",
@@ -577,7 +577,7 @@
       "cam": {
         "schemaVersion": 1,
         "documentName": "Machining_holder-01 v4",
-        "extractedAt": "2026-06-03T19:55:29",
+        "extractedAt": "2026-06-03T19:59:19",
         "setups": [
           {
             "setupName": "Setup1",
@@ -1763,7 +1763,7 @@
               }
             ],
             "totalOperations": 28,
-            "totalCycleTimeMin": null
+            "totalCycleTimeMin": 252
           }
         ],
         "uniqueTools": [
@@ -1823,7 +1823,7 @@
         "stats": {
           "totalSetups": 1,
           "totalOperations": 28,
-          "totalCycleTimeMin": null,
+          "totalCycleTimeMin": 252,
           "uniqueToolCount": 4
         }
       }

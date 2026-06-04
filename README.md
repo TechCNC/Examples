@@ -25,7 +25,7 @@ Or grab a single project directly (download starts immediately — no Drive page
 |---------|----------|------|----------|
 | **Aluminum Bases** | 6061 aluminum | ~1.2 h | [⬇ Download](https://drive.usercontent.google.com/download?id=1BdDl0IdEEa3zihsg9pSXRvJBrFwHXank&export=download&confirm=t) |
 | **Aluminum Base Plate** | 6061 aluminum | ~26 min | [⬇ Download](https://drive.usercontent.google.com/download?id=1CipPrJ7RyKfpdg7MY5efJjOawdxmKpXF&export=download&confirm=t) |
-| **Holder 01** | 6061 aluminum | — | [⬇ Download](https://drive.usercontent.google.com/download?id=1dEHNpdSfR6alctb3Cq-0FlgDpLdML9Ql&export=download&confirm=t) |
+| **Holder 01** | 6061 aluminum | ~4.2 h | [⬇ Download](https://drive.usercontent.google.com/download?id=1dEHNpdSfR6alctb3Cq-0FlgDpLdML9Ql&export=download&confirm=t) |
 | **Modular Vise** | 6061 aluminum | ~40 min | [⬇ Download](https://drive.usercontent.google.com/download?id=1Glzp3zp7zGSfEKEPDRqinFYM8d5MYiQM&export=download&confirm=t) |
 | **Plastic Plates** | HDPE / engineering plastic | ~20 min | [⬇ Download](https://drive.usercontent.google.com/download?id=1_Tvw2hSZCWuRMGlJwBaVVnSzpIAHct7C&export=download&confirm=t) |
 | **SISI — Organic Sculpt** | machinable wax / foam | ~3.4 h | [⬇ Download](https://drive.usercontent.google.com/download?id=1jhO-mt27zvf2_HWXEKG2B_B1wdJQq_6K&export=download&confirm=t) |

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "documentName": "Machining_holder-01 v4",
-  "extractedAt": "2026-06-03T19:55:29",
+  "extractedAt": "2026-06-03T19:59:19",
   "setups": [
     {
       "setupName": "Setup1",
@@ -1187,7 +1187,7 @@
         }
       ],
       "totalOperations": 28,
-      "totalCycleTimeMin": null
+      "totalCycleTimeMin": 252
     }
   ],
   "uniqueTools": [
@@ -1247,7 +1247,7 @@
   "stats": {
     "totalSetups": 1,
     "totalOperations": 28,
-    "totalCycleTimeMin": null,
+    "totalCycleTimeMin": 252,
     "uniqueToolCount": 4
   }
 }

@@ -5,7 +5,7 @@
   Single self-contained HTML/CSS/JS unit. Paste the entire content of this
   file into an Elementor "HTML" widget on the /machining-examples page.
 
-  Data source: https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples.json
+  Data source: https://cdn.jsdelivr.net/gh/TechCNC/Examples/examples.json
   jsDelivr caches with a 12-hour TTL by default; append ?v=YYYY-MM-DD to
   the URL below or purge the cache after a content update.
 
@@ -543,7 +543,10 @@
 (function () {
     'use strict';
 
-    var CDN_BASE = 'https://cdn.jsdelivr.net/gh/TechCNC/Examples@main';
+    // No `@main` ref — jsDelivr's `@main` cache layer can get stuck on stale
+    // versions for hours. The no-ref form resolves to the default branch's
+    // current HEAD and invalidates correctly.
+    var CDN_BASE = 'https://cdn.jsdelivr.net/gh/TechCNC/Examples';
     // Auto-detect local preview (Launch preview / `python -m http.server`) so
     // we can iterate on design without pushing to GitHub. Production (techcnc.ca)
     // unaffected — uses the jsDelivr CDN.

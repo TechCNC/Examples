@@ -6,7 +6,7 @@ build_index.py — compile examples/<slug>/meta.yaml + _extracted/*.cam.json
 
 The site (techcnc.ca /machining-examples) fetches that file via jsDelivr:
 
-    https://cdn.jsdelivr.net/gh/TechCNC/Examples@main/examples.json
+    https://cdn.jsdelivr.net/gh/TechCNC/Examples/examples.json
 
 Usage:
     python _scripts/build_index.py              # default
@@ -38,7 +38,9 @@ OUTPUT_FILE = REPO_ROOT / "examples.json"
 README_FILE = REPO_ROOT / "README.md"
 
 # jsDelivr CDN base for serving static assets (previews) from the repo.
-JSDELIVR_BASE = "https://cdn.jsdelivr.net/gh/TechCNC/Examples@main"
+# No `@main` ref — that cache layer can stick on stale data. The no-ref
+# form resolves to the default branch HEAD and purges reliably.
+JSDELIVR_BASE = "https://cdn.jsdelivr.net/gh/TechCNC/Examples"
 
 README_MARKER_START = "<!-- DOWNLOADS_START -->"
 README_MARKER_END = "<!-- DOWNLOADS_END -->"
